@@ -33,7 +33,6 @@ nav{
     margin:0 auto;
     padding:14px 24px;
     display:flex;
-    justify-content:space-between;
     align-items:center;
 }
 
@@ -45,81 +44,42 @@ nav{
     font-weight:600;
 }
 
-.logo img{
-    width:34px;
-    height:34px;
+.logo img{width:34px}
+
+/* ===== HERO ===== */
+.hero{
+    max-width:1300px;
+    margin:0 auto;
+    padding:110px 24px 100px;
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:70px;
+    align-items:center;
 }
 
-/* ===== UI HERO ===== */
-.ui-hero{
-    margin:90px auto 40px;
-    max-width:1150px;
-    perspective:1200px;
+/* LEFT */
+.hero-text{
+    transition:0.6s;
+}
+.hero:hover .hero-text{
+    transform:translateX(8px);
 }
 
-.ui-card{
-    position:relative;
-    border-radius:28px;
-    overflow:hidden;
-    transform-style:preserve-3d;
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.25s ease;
-    box-shadow:
-        0 0 0 1px rgba(190,130,255,0.35),
-        0 0 40px rgba(170,100,255,0.35),
-        0 50px 140px rgba(0,0,0,0.85);
-}
-
-/* 紫光跟隨 */
-.ui-card::after{
-    content:"";
-    position:absolute;
-    inset:-2px;
-    border-radius:30px;
-    background:radial-gradient(
-        circle at var(--x,50%) var(--y,50%),
-        rgba(190,120,255,0.55),
-        transparent 65%
-    );
-    opacity:0.6;
-    pointer-events:none;
-    transition:opacity 0.2s;
-}
-
-.ui-card:hover{
-    box-shadow:
-        0 0 0 1px rgba(210,160,255,0.7),
-        0 0 70px rgba(190,120,255,0.65),
-        0 60px 160px rgba(0,0,0,0.9);
-}
-
-.ui-card img{
-    width:100%;
-    display:block;
-}
-
-/* ===== HERO TEXT ===== */
-header{
-    padding:20px 20px 90px;
-    text-align:center;
-}
-
-header h1{
+.hero-text h1{
     font-size:56px;
+    margin:0 0 18px;
 }
 
-header p{
-    max-width:760px;
-    margin:18px auto;
-    opacity:0.75;
+.hero-text p{
     font-size:18px;
+    opacity:0.75;
+    max-width:520px;
 }
 
 .download-btn{
     display:inline-block;
     margin-top:42px;
-    padding:18px 50px;
+    padding:18px 52px;
     border-radius:18px;
     color:white;
     text-decoration:none;
@@ -130,11 +90,43 @@ header p{
     box-shadow:0 25px 60px rgba(0,0,0,0.65);
     transition:0.35s;
 }
-
 .download-btn:hover{
     transform:translateY(-6px) scale(1.05);
-    box-shadow:0 0 55px rgba(170,100,255,0.75);
+    box-shadow:0 0 60px rgba(170,100,255,0.85);
 }
+
+/* RIGHT UI */
+.ui-wrap{perspective:1200px}
+
+.ui-card{
+    position:relative;
+    border-radius:28px;
+    overflow:hidden;
+    transform-style:preserve-3d;
+    box-shadow:
+        0 0 0 1px rgba(190,130,255,0.35),
+        0 0 45px rgba(170,100,255,0.45),
+        0 55px 150px rgba(0,0,0,0.9);
+    animation:floatUI 6s ease-in-out infinite;
+}
+@keyframes floatUI{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+.ui-card::after{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:30px;
+    background:radial-gradient(
+        circle at var(--x,50%) var(--y,50%),
+        rgba(200,140,255,0.65),
+        transparent 65%
+    );
+    opacity:0.65;
+    pointer-events:none;
+}
+.ui-card img{width:100%}
 
 /* ===== SECTION ===== */
 section{
@@ -142,19 +134,27 @@ section{
     margin:0 auto;
     padding:90px 20px;
 }
-
 section h2{
     font-size:38px;
     margin-bottom:40px;
 }
 
-/* ===== CARDS ===== */
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+.reveal.show{
+    opacity:1;
+    transform:none;
+}
+
+/* CARDS */
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:36px;
 }
-
 .glass{
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(18px);
@@ -162,27 +162,33 @@ section h2{
     border-radius:26px;
     padding:44px;
     box-shadow:0 30px 90px rgba(0,0,0,0.65);
+    transition:0.4s;
 }
-
+.glass:hover{
+    transform:translateY(-10px);
+    box-shadow:
+        0 0 50px rgba(170,100,255,0.55),
+        0 40px 110px rgba(0,0,0,0.8);
+}
 .stat{
     font-size:46px;
     color:#d3a6ff;
     font-weight:700;
 }
 
-/* ===== FAQ ===== */
+/* FAQ */
 .faq-item{
     margin-bottom:24px;
     cursor:pointer;
+    transition:0.3s;
 }
-
+.faq-item:hover{transform:translateX(6px)}
 .faq-q{
     background:rgba(255,255,255,0.06);
     padding:24px 30px;
     border-radius:20px;
     border:1px solid rgba(255,255,255,0.18);
 }
-
 .faq-a{
     max-height:0;
     overflow:hidden;
@@ -190,17 +196,23 @@ section h2{
     padding:0 30px;
     opacity:0.85;
 }
-
 .faq-item.active .faq-a{
     max-height:260px;
     padding:18px 30px 0;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer{
     text-align:center;
     padding:40px;
     opacity:0.45;
+}
+
+/* RWD */
+@media(max-width:900px){
+    .hero{grid-template-columns:1fr}
+    .hero-text{text-align:center}
+    .hero-text p{margin:0 auto}
 }
 </style>
 </head>
@@ -210,94 +222,62 @@ footer{
 <nav>
     <div class="nav-inner">
         <div class="logo">
-            <img src="Feairl.png" alt="Feairl Logo">
+            <img src="Feairl.png">
             Feairl
         </div>
     </div>
 </nav>
 
-<!-- UI HERO -->
-<div class="ui-hero">
-    <div class="ui-card" id="uiCard">
-        <img src="UI.png" alt="Feairl Interface">
+<div class="hero">
+    <div class="hero-text">
+        <h1>Feairl Executor</h1>
+        <p>
+            A modern high-performance Roblox executor built for stability,
+            compatibility, and clean execution.
+        </p>
+        <a class="download-btn"
+           href="https://work.ink/26Yy/FeairlExecutor"
+           target="_blank">Download Feairl</a>
+    </div>
+
+    <div class="ui-wrap">
+        <div class="ui-card" id="uiCard">
+            <img src="UI.png">
+        </div>
     </div>
 </div>
 
-<header>
-    <h1>Feairl Executor</h1>
-    <p>
-        A modern high-performance Roblox executor built for stability,
-        compatibility, and clean execution.
-    </p>
-
-    <a class="download-btn"
-       href="https://work.ink/26Yy/FeairlExecutor"
-       target="_blank">
-       Download Feairl
-    </a>
-</header>
-
-<section>
+<section class="reveal">
     <h2>Execution Compatibility</h2>
     <div class="grid">
         <div class="glass">
             <h3>UNC Compatibility</h3>
             <div class="stat">99%</div>
-            <p>Extremely high compatibility for most UNC-based scripts.</p>
         </div>
         <div class="glass">
             <h3>sUNC Compatibility</h3>
             <div class="stat">98%</div>
-            <p>Strong support for sUNC features with stable execution.</p>
         </div>
     </div>
 </section>
 
-<section>
+<section class="reveal">
     <h2>Q & A</h2>
 
-    <div class="faq-item">
-        <div class="faq-q">Why does my antivirus flag Feairl?</div>
-        <div class="faq-a">Executors interact with memory and injection, which may trigger false positives.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q">Is Feairl safe to use?</div>
-        <div class="faq-a">Feairl does not include malicious behavior. Whitelisting is recommended.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q">Do I need to disable my antivirus?</div>
-        <div class="faq-a">Disabling is not required. Adding Feairl to the whitelist is recommended.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q">Is Feairl free?</div>
-        <div class="faq-a">Yes, Feairl provides a free version.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q">Why do some scripts not work?</div>
-        <div class="faq-a">Some scripts rely on unsupported UNC or sUNC features.</div>
-    </div>
-
-    <div class="faq-item">
-        <div class="faq-q">How often is Feairl updated?</div>
-        <div class="faq-a">Updates are released frequently to maintain compatibility.</div>
-    </div>
+    <div class="faq-item"><div class="faq-q">Why does my antivirus flag Feairl?</div><div class="faq-a">False positives due to injection.</div></div>
+    <div class="faq-item"><div class="faq-q">Is Feairl safe?</div><div class="faq-a">No malicious behavior included.</div></div>
+    <div class="faq-item"><div class="faq-q">Is Feairl free?</div><div class="faq-a">Yes.</div></div>
 </section>
 
-<footer>
-    © 2026 Feairl. All rights reserved.
-</footer>
+<footer>© 2026 Feairl. All rights reserved.</footer>
 
 <script>
 /* FAQ toggle */
-document.querySelectorAll('.faq-item').forEach(item=>{
-    item.onclick=()=>item.classList.toggle('active');
+document.querySelectorAll('.faq-item').forEach(i=>{
+    i.onclick=()=>i.classList.toggle('active');
 });
 
-/* UI 3D tilt + glow follow */
+/* UI tilt */
 const card=document.getElementById("uiCard");
 card.addEventListener("mousemove",e=>{
     const r=card.getBoundingClientRect();
@@ -305,10 +285,22 @@ card.addEventListener("mousemove",e=>{
     const y=e.clientY-r.top;
     card.style.setProperty("--x",`${x}px`);
     card.style.setProperty("--y",`${y}px`);
-    card.style.transform=`rotateX(${((y/r.height)-0.5)*-14}deg) rotateY(${((x/r.width)-0.5)*14}deg)`;
+    card.style.transform=
+        `rotateX(${((y/r.height)-0.5)*-14}deg)
+         rotateY(${((x/r.width)-0.5)*14}deg)`;
 });
 card.addEventListener("mouseleave",()=>{
-    card.style.transform="rotateX(0) rotateY(0)";
+    card.style.transform="";
+});
+
+/* Scroll reveal */
+const reveals=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+    reveals.forEach(r=>{
+        if(r.getBoundingClientRect().top<window.innerHeight-80){
+            r.classList.add("show");
+        }
+    });
 });
 </script>
 
