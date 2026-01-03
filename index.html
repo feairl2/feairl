@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== BASE ===== */
 *{
     box-sizing:border-box;
     font-family:"Segoe UI", Arial, sans-serif;
@@ -19,7 +18,7 @@ body{
     overflow-x:hidden;
 }
 
-/* ===== NAV BAR ===== */
+/* ===== NAV ===== */
 nav{
     position:sticky;
     top:0;
@@ -55,16 +54,17 @@ nav{
 }
 
 .nav-links a{
+    position:relative;
     display:inline-flex;
     align-items:center;
     height:40px;
-    position:relative;
-    text-decoration:none;
     color:white;
-    opacity:0.75;
-    font-size:15px;
-    transition:opacity .25s;
+    text-decoration:none;
+    opacity:.75;
+    transition:.25s;
 }
+
+.nav-links a:hover{opacity:1}
 
 .nav-links a::after{
     content:"";
@@ -75,21 +75,16 @@ nav{
     width:0;
     height:2px;
     background:#c08bff;
-    transition:width .3s ease;
+    transition:.3s;
 }
 
-.nav-links a:hover{
-    opacity:1;
-}
-.nav-links a:hover::after{
-    width:100%;
-}
+.nav-links a:hover::after{width:100%}
 
 .nav-download{
     padding:10px 22px;
     border-radius:14px;
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.3);
+    border:1px solid rgba(255,255,255,.3);
+    background:rgba(255,255,255,.08);
 }
 .nav-download::after{display:none}
 
@@ -111,7 +106,7 @@ nav{
 
 .hero-text p{
     font-size:18px;
-    opacity:0.75;
+    opacity:.75;
     max-width:520px;
 }
 
@@ -120,30 +115,56 @@ nav{
     margin-top:44px;
     padding:18px 54px;
     border-radius:18px;
+    border:1px solid rgba(255,255,255,.35);
+    background:rgba(255,255,255,.08);
     color:white;
     text-decoration:none;
-    font-weight:600;
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.35);
     transition:.35s;
 }
+
 .download-btn:hover{
     transform:translateY(-6px) scale(1.05);
     box-shadow:0 0 60px rgba(180,110,255,.9);
 }
 
-/* ===== UI IMAGE ===== */
+/* ===== UI IMAGE + EFFECTS ===== */
 .ui-wrap{
     position:relative;
+    perspective:1400px;
+}
+
+.ui-glow{
+    position:absolute;
+    inset:-60px;
+    border-radius:50px;
+    background:radial-gradient(
+        circle at var(--x,50%) var(--y,50%),
+        rgba(190,120,255,.45),
+        transparent 60%
+    );
+    filter:blur(55px);
+    pointer-events:none;
+    transition:.2s;
+}
+
+.ui-float{
+    animation:floatUI 6s ease-in-out infinite;
+}
+
+@keyframes floatUI{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-14px)}
 }
 
 .ui-card{
     border-radius:28px;
     overflow:hidden;
+    transform-style:preserve-3d;
     box-shadow:
         0 0 0 1px rgba(200,150,255,.45),
         0 0 70px rgba(180,120,255,.65),
         0 70px 180px rgba(0,0,0,.95);
+    transition:transform .15s;
 }
 
 .ui-card img{
@@ -171,8 +192,8 @@ section h2{
 }
 
 .compat-card{
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.18);
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.18);
     border-radius:26px;
     padding:42px;
     transition:.35s;
@@ -187,7 +208,6 @@ section h2{
     font-size:46px;
     font-weight:700;
     color:#dcb6ff;
-    margin:12px 0;
 }
 
 /* ===== FAQ ===== */
@@ -247,7 +267,9 @@ footer{
             <a href="#">Home</a>
             <a href="#compatibility">Compatibility</a>
             <a href="#faq">Q & A</a>
-            <a class="nav-download" href="#">Download</a>
+            <a class="nav-download"
+               href="https://work.ink/26Yy/FeairlExecutor"
+               target="_blank">Download</a>
         </div>
     </div>
 </nav>
@@ -259,26 +281,29 @@ footer{
             A modern high-performance Roblox executor built for stability,
             compatibility, and clean execution.
         </p>
-        <a class="download-btn" href="#">Download Feairl</a>
+        <a class="download-btn"
+           href="https://work.ink/26Yy/FeairlExecutor"
+           target="_blank">Download Feairl</a>
     </div>
 
-    <!-- ✅ 圖片在這裡 -->
+    <!-- UI IMAGE -->
     <div class="ui-wrap">
-        <div class="ui-card">
-            <img src="UI.png" alt="Feairl Interface">
+        <div class="ui-glow" id="uiGlow"></div>
+        <div class="ui-float">
+            <div class="ui-card" id="uiCard">
+                <img src="UI.png" alt="Feairl UI">
+            </div>
         </div>
     </div>
 </div>
 
 <section id="compatibility">
     <h2>Execution Compatibility</h2>
-
     <div class="compat-grid">
         <div class="compat-card">
             <h3>UNC Compatibility</h3>
             <div class="compat-stat">99%</div>
         </div>
-
         <div class="compat-card">
             <h3>sUNC Compatibility</h3>
             <div class="compat-stat">98%</div>
@@ -320,8 +345,30 @@ footer{
 </footer>
 
 <script>
+/* FAQ toggle */
 document.querySelectorAll('.faq-item').forEach(i=>{
     i.onclick=()=>i.classList.toggle('active');
+});
+
+/* UI mouse tilt + glow follow */
+const card = document.getElementById("uiCard");
+const glow = document.getElementById("uiGlow");
+
+card.addEventListener("mousemove", e=>{
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+
+    card.style.transform =
+        `rotateX(${((y/r.height)-0.5)*-14}deg)
+         rotateY(${((x/r.width)-0.5)*14}deg)`;
+
+    glow.style.setProperty("--x",`${x}px`);
+    glow.style.setProperty("--y",`${y}px`);
+});
+
+card.addEventListener("mouseleave", ()=>{
+    card.style.transform = "rotateX(0) rotateY(0)";
 });
 </script>
 
