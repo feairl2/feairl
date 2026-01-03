@@ -18,105 +18,141 @@ body{
     color:#fff;
 }
 
+/* ===== 上方導覽列 ===== */
+nav{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(10,0,20,0.6);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,0.12);
+}
+
+.nav-inner{
+    max-width:1200px;
+    margin:0 auto;
+    padding:16px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.nav-title{
+    font-size:20px;
+    font-weight:600;
+    letter-spacing:0.5px;
+}
+
+.nav-links a{
+    margin-left:26px;
+    text-decoration:none;
+    color:white;
+    opacity:0.75;
+    font-size:15px;
+    transition:0.25s;
+}
+
+.nav-links a:hover{
+    opacity:1;
+}
+
 /* ===== Header ===== */
 header{
-    padding:80px 20px 60px;
+    padding:90px 20px 70px;
     text-align:center;
 }
 
 header h1{
-    font-size:48px;
-    margin-bottom:10px;
+    font-size:50px;
+    margin-bottom:14px;
 }
 
 header p{
-    opacity:0.75;
     font-size:18px;
+    opacity:0.75;
 }
 
-/* ===== 玻璃下載按鈕 ===== */
+/* 下載按鈕 */
 .glass-download{
     display:inline-block;
-    margin-top:35px;
-    padding:16px 42px;
+    margin-top:38px;
+    padding:16px 44px;
     border-radius:16px;
     text-decoration:none;
     color:white;
     font-weight:600;
-    letter-spacing:0.5px;
 
     background:rgba(255,255,255,0.08);
     backdrop-filter:blur(14px);
     -webkit-backdrop-filter:blur(14px);
 
     border:1px solid rgba(255,255,255,0.35);
-    box-shadow:
-        0 0 0 1px rgba(160,90,255,0.25),
-        0 15px 40px rgba(0,0,0,0.6);
-
+    box-shadow:0 20px 45px rgba(0,0,0,0.65);
     transition:0.3s;
 }
 
 .glass-download:hover{
     transform:translateY(-4px);
     box-shadow:
-        0 0 0 1px rgba(190,130,255,0.6),
-        0 0 40px rgba(160,90,255,0.4),
-        0 25px 60px rgba(0,0,0,0.75);
+        0 0 40px rgba(160,90,255,0.45),
+        0 30px 70px rgba(0,0,0,0.75);
 }
 
 /* ===== Section ===== */
 section{
-    max-width:1100px;
+    max-width:1200px;
     margin:0 auto;
-    padding:60px 20px;
+    padding:70px 20px;
 }
 
-.section-box{
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(16px);
-    -webkit-backdrop-filter:blur(16px);
+section h2{
+    font-size:34px;
+    margin-bottom:30px;
+}
+
+/* ===== 卡片區 ===== */
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.glass-card{
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
     border:1px solid rgba(255,255,255,0.18);
-    border-radius:20px;
+    border-radius:22px;
+    padding:36px;
 
-    padding:45px;
     box-shadow:0 30px 70px rgba(0,0,0,0.65);
 }
 
-.section-box h2{
+.glass-card h3{
     margin-top:0;
-    font-size:30px;
+    font-size:26px;
 }
 
-.section-box p{
-    font-size:17px;
-    line-height:1.8;
+.glass-card p{
+    font-size:16px;
+    line-height:1.75;
     opacity:0.9;
 }
 
-/* ===== Tags ===== */
-.tags{
-    margin-top:30px;
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-}
-
-.tag{
-    padding:10px 18px;
-    border-radius:999px;
-    font-size:14px;
-
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.25);
-    backdrop-filter:blur(10px);
+/* ===== 數值顯示 ===== */
+.stat{
+    margin-top:22px;
+    font-size:40px;
+    font-weight:700;
+    color:#c79bff;
 }
 
 /* ===== Footer ===== */
 footer{
     text-align:center;
-    padding:30px 15px;
+    padding:35px 15px;
     opacity:0.45;
     font-size:14px;
 }
@@ -125,9 +161,22 @@ footer{
 
 <body>
 
+<!-- 導覽列 -->
+<nav>
+    <div class="nav-inner">
+        <div class="nav-title">Feairl</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="https://work.ink/26Yy/FeairlExecutor" target="_blank">Download</a>
+        </div>
+    </div>
+</nav>
+
+<!-- 主標 -->
 <header>
     <h1>Feairl Executor</h1>
-    <p>Fast, stable and powerful Roblox executor</p>
+    <p>High-performance Roblox executor built for stability and power</p>
 
     <a class="glass-download"
        href="https://work.ink/26Yy/FeairlExecutor"
@@ -136,24 +185,33 @@ footer{
     </a>
 </header>
 
-<section>
-    <div class="section-box">
-        <h2>About Feairl</h2>
-        <p>
-            Feairl is a high-performance Roblox executor focused on stability,
-            execution compatibility and a clean user experience.
-            <br><br>
-            It supports a wide range of scripts with extremely high execution
-            accuracy and reliability.
-        </p>
+<!-- 功能區 -->
+<section id="features">
+    <h2>Execution Compatibility</h2>
 
-        <div class="tags">
-            <div class="tag">99 UNC</div>
-            <div class="tag">98% sUNC</div>
-            <div class="tag">Fast Inject</div>
-            <div class="tag">Clean UI</div>
-            <div class="tag">Stable Execution</div>
+    <div class="card-grid">
+
+        <!-- UNC -->
+        <div class="glass-card">
+            <h3>UNC Compatibility</h3>
+            <div class="stat">99%</div>
+            <p>
+                Feairl provides extremely high UNC execution compatibility,
+                allowing the majority of scripts to run reliably and accurately
+                with stable performance.
+            </p>
         </div>
+
+        <!-- sUNC -->
+        <div class="glass-card">
+            <h3>sUNC Compatibility</h3>
+            <div class="stat">98%</div>
+            <p>
+                With advanced execution handling, Feairl supports most sUNC
+                scripts, delivering consistent results and reduced errors.
+            </p>
+        </div>
+
     </div>
 </section>
 
