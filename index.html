@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Feairl Executor</title>
@@ -13,16 +13,16 @@
 
 body{
     margin:0;
-    background:
-        radial-gradient(circle at top, #2a0050, #05000a 65%);
+    background:radial-gradient(circle at top, #2a0050, #05000a 65%);
     color:#fff;
+    overflow-x:hidden;
 }
 
-/* ===== 導覽列 ===== */
+/* ===== NAV ===== */
 nav{
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:20;
     background:rgba(10,0,20,0.6);
     backdrop-filter:blur(14px);
     border-bottom:1px solid rgba(255,255,255,0.12);
@@ -31,15 +31,23 @@ nav{
 .nav-inner{
     max-width:1250px;
     margin:0 auto;
-    padding:16px 24px;
+    padding:14px 24px;
     display:flex;
     justify-content:space-between;
     align-items:center;
 }
 
-.nav-title{
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
     font-size:20px;
     font-weight:600;
+}
+
+.logo img{
+    width:34px;
+    height:34px;
 }
 
 .nav-links a{
@@ -47,134 +55,151 @@ nav{
     text-decoration:none;
     color:white;
     opacity:0.75;
-    font-size:15px;
     transition:0.25s;
 }
 
-.nav-links a:hover{ opacity:1; }
+.nav-links a:hover{opacity:1}
 
-/* ===== Hero ===== */
+/* ===== HERO ===== */
 header{
-    padding:100px 20px 80px;
+    padding:110px 20px 90px;
     text-align:center;
+    animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
 }
 
 header h1{
-    font-size:52px;
-    margin-bottom:16px;
+    font-size:54px;
 }
 
 header p{
-    font-size:18px;
+    max-width:720px;
+    margin:18px auto;
     opacity:0.75;
-    max-width:700px;
-    margin:0 auto;
+    font-size:18px;
 }
 
-/* 下載按鈕 */
-.glass-download{
+.download-btn{
     display:inline-block;
-    margin-top:42px;
+    margin-top:40px;
     padding:18px 48px;
     border-radius:18px;
-    text-decoration:none;
     color:white;
+    text-decoration:none;
     font-weight:600;
-
     background:rgba(255,255,255,0.08);
     backdrop-filter:blur(14px);
     border:1px solid rgba(255,255,255,0.35);
     box-shadow:0 25px 60px rgba(0,0,0,0.65);
-    transition:0.3s;
+    transition:0.35s;
 }
 
-.glass-download:hover{
-    transform:translateY(-4px);
-    box-shadow:
-        0 0 45px rgba(160,90,255,0.45),
-        0 35px 80px rgba(0,0,0,0.8);
+.download-btn:hover{
+    transform:translateY(-6px) scale(1.05);
+    box-shadow:0 0 45px rgba(160,90,255,0.6);
 }
 
-/* ===== Section ===== */
+/* ===== SECTION ===== */
 section{
     max-width:1250px;
     margin:0 auto;
-    padding:80px 20px;
+    padding:90px 20px;
 }
 
 section h2{
-    font-size:36px;
-    margin-bottom:36px;
+    font-size:38px;
+    margin-bottom:40px;
 }
 
-/* ===== 卡片格 ===== */
+/* ===== CARDS ===== */
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:32px;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:34px;
 }
 
-.glass-card{
+.glass{
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(18px);
     border:1px solid rgba(255,255,255,0.18);
     border-radius:24px;
-    padding:40px;
-    box-shadow:0 30px 75px rgba(0,0,0,0.65);
+    padding:42px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.65);
+    transition:0.35s;
 }
 
-.glass-card h3{
-    margin-top:0;
-    font-size:26px;
+.glass:hover{
+    box-shadow:
+        0 0 40px rgba(160,90,255,0.45),
+        0 35px 90px rgba(0,0,0,0.75);
 }
 
-.glass-card p{
-    font-size:16px;
-    line-height:1.8;
-    opacity:0.9;
-}
-
-/* 數值 */
 .stat{
-    font-size:42px;
-    font-weight:700;
-    margin:18px 0;
+    font-size:44px;
     color:#c79bff;
+    font-weight:700;
+}
+
+/* ===== UI IMAGE ===== */
+.ui-preview{
+    text-align:center;
+}
+
+.ui-preview img{
+    width:100%;
+    max-width:900px;
+    border-radius:22px;
+    box-shadow:0 40px 90px rgba(0,0,0,0.85);
+    margin-top:30px;
 }
 
 /* ===== FAQ ===== */
-.faq{
-    max-width:1000px;
-    margin:0 auto;
-}
-
 .faq-item{
-    margin-bottom:24px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(16px);
+    margin-bottom:22px;
+    cursor:pointer;
+}
+
+.faq-q{
+    background:rgba(255,255,255,0.06);
+    padding:22px 28px;
+    border-radius:18px;
     border:1px solid rgba(255,255,255,0.18);
-    border-radius:20px;
-    padding:26px 32px;
 }
 
-.faq-item h4{
-    margin:0 0 10px;
-    font-size:20px;
+.faq-a{
+    max-height:0;
+    overflow:hidden;
+    transition:0.4s;
+    padding:0 28px;
+    opacity:0.8;
 }
 
-.faq-item p{
-    margin:0;
-    font-size:15px;
-    line-height:1.7;
-    opacity:0.9;
+.faq-item.active .faq-a{
+    max-height:200px;
+    padding:16px 28px 0;
 }
 
-/* ===== Footer ===== */
+/* ===== REVEAL ===== */
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:none;
+}
+
+/* ===== FOOTER ===== */
 footer{
     text-align:center;
-    padding:40px 15px;
+    padding:40px;
     opacity:0.45;
-    font-size:14px;
 }
 </style>
 </head>
@@ -183,7 +208,10 @@ footer{
 
 <nav>
     <div class="nav-inner">
-        <div class="nav-title">Feairl</div>
+        <div class="logo">
+            <img src="Feairl.png" alt="Feairl Logo">
+            Feairl
+        </div>
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#compatibility">Compatibility</a>
@@ -196,116 +224,80 @@ footer{
 <header>
     <h1>Feairl Executor</h1>
     <p>
-        Feairl is a modern, high-performance Roblox executor built for
-        stability, compatibility, and a clean execution experience.
+        A modern high-performance Roblox executor built for stability,
+        compatibility, and clean execution.
     </p>
 
-    <a class="glass-download"
+    <a class="download-btn"
        href="https://work.ink/26Yy/FeairlExecutor"
        target="_blank">
        Download Feairl
     </a>
 </header>
 
-<section id="compatibility">
+<section id="compatibility" class="reveal">
     <h2>Execution Compatibility</h2>
-
     <div class="grid">
-        <div class="glass-card">
+        <div class="glass">
             <h3>UNC Compatibility</h3>
             <div class="stat">99%</div>
-            <p>
-                Feairl achieves extremely high UNC compatibility, allowing
-                the majority of scripts to execute correctly with stable
-                and consistent performance.
-            </p>
+            <p>Extremely high compatibility for most UNC-based scripts.</p>
         </div>
-
-        <div class="glass-card">
+        <div class="glass">
             <h3>sUNC Compatibility</h3>
             <div class="stat">98%</div>
-            <p>
-                Advanced execution handling ensures strong sUNC support,
-                reducing script errors and increasing overall reliability.
-            </p>
+            <p>Strong support for sUNC features with stable execution.</p>
         </div>
     </div>
 </section>
 
-<section>
-    <h2>Why Feairl?</h2>
-
-    <div class="grid">
-        <div class="glass-card">
-            <h3>Performance Focused</h3>
-            <p>
-                Optimized execution paths provide fast injection times
-                and smooth script execution.
-            </p>
-        </div>
-
-        <div class="glass-card">
-            <h3>Clean & Modern UI</h3>
-            <p>
-                Designed with a modern dark interface that is easy on
-                the eyes and simple to use.
-            </p>
-        </div>
-
-        <div class="glass-card">
-            <h3>Frequent Updates</h3>
-            <p>
-                Regular updates ensure compatibility with the latest
-                Roblox changes and scripts.
-            </p>
-        </div>
+<section class="reveal">
+    <h2>Interface Preview</h2>
+    <div class="ui-preview">
+        <img src="UI.png" alt="Feairl UI Preview">
     </div>
 </section>
 
-<section id="faq">
-    <h2>Q & A / Frequently Asked Questions</h2>
+<section id="faq" class="reveal">
+    <h2>Q & A</h2>
 
-    <div class="faq">
-
-        <div class="faq-item">
-            <h4>Q: 為什麼防毒軟體會誤報 Feairl？</h4>
-            <p>
-                A: 由於執行器需要進行注入與記憶體操作，
-                部分防毒軟體會將其誤判為威脅。
-                Feairl 本身不包含任何惡意行為。
-            </p>
+    <div class="faq-item">
+        <div class="faq-q">Why does my antivirus flag Feairl?</div>
+        <div class="faq-a">
+            Executors use injection and memory interaction,
+            which may trigger false positives.
         </div>
+    </div>
 
-        <div class="faq-item">
-            <h4>Q: 使用 Feairl 需要關閉防毒嗎？</h4>
-            <p>
-                A: 部分防毒軟體可能會阻止執行器正常運作，
-                建議將 Feairl 加入白名單以確保正常使用。
-            </p>
+    <div class="faq-item">
+        <div class="faq-q">Is Feairl safe?</div>
+        <div class="faq-a">
+            Feairl does not include malicious behavior.
+            Whitelisting is recommended.
         </div>
-
-        <div class="faq-item">
-            <h4>Q: Feairl 是免費的嗎？</h4>
-            <p>
-                A: 是的，Feairl 提供免費版本，讓使用者能夠
-                體驗高相容性的執行環境。
-            </p>
-        </div>
-
-        <div class="faq-item">
-            <h4>Q: 為什麼有些腳本無法執行？</h4>
-            <p>
-                A: 不同腳本依賴的 UNC / sUNC 功能不同，
-                部分腳本可能尚未完全支援，請等待後續更新。
-            </p>
-        </div>
-
     </div>
 </section>
 
 <footer>
     © 2026 Feairl. All rights reserved.
 </footer>
+
+<script>
+/* FAQ toggle */
+document.querySelectorAll('.faq-item').forEach(item=>{
+    item.onclick=()=>item.classList.toggle('active');
+});
+
+/* Scroll reveal */
+const reveals=document.querySelectorAll('.reveal');
+window.addEventListener('scroll',()=>{
+    reveals.forEach(r=>{
+        if(r.getBoundingClientRect().top<window.innerHeight-80){
+            r.classList.add('show');
+        }
+    });
+});
+</script>
 
 </body>
 </html>
