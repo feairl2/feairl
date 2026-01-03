@@ -132,6 +132,25 @@ nav{
     box-shadow:0 0 60px rgba(180,110,255,.9);
 }
 
+/* ===== UI IMAGE ===== */
+.ui-wrap{
+    position:relative;
+}
+
+.ui-card{
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:
+        0 0 0 1px rgba(200,150,255,.45),
+        0 0 70px rgba(180,120,255,.65),
+        0 70px 180px rgba(0,0,0,.95);
+}
+
+.ui-card img{
+    width:100%;
+    display:block;
+}
+
 /* ===== SECTION ===== */
 section{
     max-width:1300px;
@@ -164,21 +183,11 @@ section h2{
     box-shadow:0 0 60px rgba(180,110,255,.6);
 }
 
-.compat-card h3{
-    margin-top:0;
-    font-size:26px;
-}
-
 .compat-stat{
     font-size:46px;
     font-weight:700;
     color:#dcb6ff;
     margin:12px 0;
-}
-
-.compat-desc{
-    opacity:.85;
-    line-height:1.7;
 }
 
 /* ===== FAQ ===== */
@@ -201,7 +210,6 @@ section h2{
     transition:.45s ease;
     padding:0 32px;
     opacity:.9;
-    line-height:1.7;
 }
 
 .faq-item.active .faq-a{
@@ -253,9 +261,15 @@ footer{
         </p>
         <a class="download-btn" href="#">Download Feairl</a>
     </div>
+
+    <!-- ✅ 圖片在這裡 -->
+    <div class="ui-wrap">
+        <div class="ui-card">
+            <img src="UI.png" alt="Feairl Interface">
+        </div>
+    </div>
 </div>
 
-<!-- ===== COMPATIBILITY ===== -->
 <section id="compatibility">
     <h2>Execution Compatibility</h2>
 
@@ -263,65 +277,41 @@ footer{
         <div class="compat-card">
             <h3>UNC Compatibility</h3>
             <div class="compat-stat">99%</div>
-            <div class="compat-desc">
-                Feairl provides extremely high UNC compatibility, allowing the
-                majority of modern scripts to execute reliably and consistently.
-            </div>
         </div>
 
         <div class="compat-card">
             <h3>sUNC Compatibility</h3>
             <div class="compat-stat">98%</div>
-            <div class="compat-desc">
-                Advanced execution handling ensures strong sUNC support for
-                scripts that rely on extended or specialized functionality.
-            </div>
         </div>
     </div>
 </section>
 
-<!-- ===== FAQ ===== -->
 <section id="faq">
     <h2>Q & A</h2>
 
     <div class="faq-item">
         <div class="faq-q">Why does my antivirus flag Feairl?</div>
-        <div class="faq-a">
-            Executors interact with memory and use injection techniques that
-            are commonly detected as false positives by antivirus software.
-        </div>
+        <div class="faq-a">False positives caused by injection behavior.</div>
     </div>
 
     <div class="faq-item">
-        <div class="faq-q">Is Feairl safe to use?</div>
-        <div class="faq-a">
-            Feairl does not include malware or spyware. All functionality is
-            focused on script execution.
-        </div>
+        <div class="faq-q">Is Feairl safe?</div>
+        <div class="faq-a">Feairl contains no malware or spyware.</div>
     </div>
 
     <div class="faq-item">
-        <div class="faq-q">Do I need to disable antivirus software?</div>
-        <div class="faq-a">
-            Disabling antivirus software is not recommended. Whitelisting
-            Feairl is the correct approach.
-        </div>
+        <div class="faq-q">Do I need to disable antivirus?</div>
+        <div class="faq-a">No. Whitelisting is recommended.</div>
     </div>
 
     <div class="faq-item">
         <div class="faq-q">Why do some scripts not work?</div>
-        <div class="faq-a">
-            Some scripts rely on unsupported UNC or sUNC features or outdated
-            APIs affected by Roblox updates.
-        </div>
+        <div class="faq-a">Some scripts rely on unsupported UNC or sUNC features.</div>
     </div>
 
     <div class="faq-item">
-        <div class="faq-q">Is there any risk when using Feairl?</div>
-        <div class="faq-a">
-            Using executors may violate Roblox's terms of service. Users are
-            responsible for understanding and accepting potential risks.
-        </div>
+        <div class="faq-q">Is there any risk?</div>
+        <div class="faq-a">Using executors may violate Roblox ToS.</div>
     </div>
 </section>
 
