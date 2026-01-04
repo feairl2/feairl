@@ -59,15 +59,14 @@ nav{
     background:rgba(255,255,255,.08);
 }
 
-/* ===== BIG SLOGAN ===== */
+/* ===== BIG HERO ===== */
 .big-hero{
-    min-height:85vh;
+    min-height:90vh;
     display:flex;
     flex-direction:column;
-    justify-content:center;
     align-items:center;
     text-align:center;
-    padding:140px 24px 100px;
+    padding:160px 24px 120px;
 }
 .big-title{
     font-size:96px;
@@ -86,6 +85,8 @@ nav{
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
+
+/* Download (top only) */
 .big-download{
     margin-top:56px;
     padding:20px 64px;
@@ -99,52 +100,66 @@ nav{
 }
 .big-download:hover{transform:scale(1.05)}
 
-/* ===== ORIGINAL HERO ===== */
-.hero{
-    max-width:1400px;
-    margin:auto;
-    padding:120px 28px 110px;
-    display:grid;
-    grid-template-columns:1fr 1.25fr;
-    gap:90px;
-    align-items:center;
+/* ===== UI SHOWCASE ===== */
+.ui-section{
+    padding:40px 24px 140px;
+    display:flex;
+    justify-content:center;
 }
-.hero-text h1{font-size:58px;margin:0 0 20px}
-.hero-text p{font-size:18px;opacity:.75;max-width:520px}
-.download-btn{
-    display:inline-block;
-    margin-top:44px;
-    padding:18px 54px;
-    border-radius:18px;
-    border:1px solid rgba(255,255,255,.35);
-    background:rgba(255,255,255,.08);
-    color:white;
-    text-decoration:none;
+.ui-wrap{
+    position:relative;
+    max-width:960px;
+    width:100%;
+    perspective:1400px;
 }
-
-/* ===== UI ===== */
-.ui-wrap{position:relative;perspective:1400px}
 .ui-glow{
     position:absolute;
-    inset:-80px;
-    border-radius:60px;
+    inset:-90px;
+    border-radius:70px;
     background:radial-gradient(circle at var(--x,50%) var(--y,50%),rgba(190,120,255,.45),transparent 60%);
-    filter:blur(65px);
+    filter:blur(70px);
     pointer-events:none;
 }
 .ui-card{
-    border-radius:28px;
+    border-radius:32px;
     overflow:hidden;
     transform-style:preserve-3d;
     box-shadow:
         0 0 0 1px rgba(200,150,255,.45),
-        0 0 80px rgba(180,120,255,.7),
-        0 80px 200px rgba(0,0,0,.95);
+        0 0 90px rgba(180,120,255,.7),
+        0 90px 220px rgba(0,0,0,.95);
+    transition:transform .15s;
 }
 .ui-card img{width:100%;display:block}
 
+/* ===== STEALTH PANEL (DESIGNED) ===== */
+.stealth-panel{
+    max-width:1200px;
+    margin:0 auto 160px;
+    padding:80px 60px;
+    text-align:center;
+    border-radius:36px;
+    background:
+        linear-gradient(rgba(255,255,255,.04),rgba(255,255,255,.02));
+    border:1px solid rgba(200,150,255,.45);
+    box-shadow:
+        inset 0 0 60px rgba(180,120,255,.25),
+        0 0 120px rgba(180,120,255,.35);
+}
+.stealth-panel h2{
+    margin:0;
+    font-size:38px;
+    font-weight:700;
+    color:#e7d4ff;
+    line-height:1.4;
+}
+
 /* ===== COMPATIBILITY ===== */
-section{max-width:1300px;margin:auto;padding:100px 24px}
+section{
+    max-width:1300px;
+    margin:auto;
+    padding:120px 24px;
+}
 .compat-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -161,18 +176,6 @@ section{max-width:1300px;margin:auto;padding:100px 24px}
     font-weight:700;
     color:#dcb6ff;
 }
-
-/* ===== STEALTH PANEL ===== */
-.stealth-panel{
-    max-width:1100px;
-    margin:160px auto;
-    padding:70px 48px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(200,150,255,.35);
-    border-radius:30px;
-    text-align:center;
-}
-.stealth-panel h2{font-size:36px;color:#e4ccff}
 
 /* ===== FAQ ===== */
 .faq-item{margin-bottom:28px;cursor:pointer}
@@ -202,7 +205,6 @@ footer{text-align:center;padding:42px;opacity:.45}
 @media(max-width:900px){
     .big-title{font-size:62px}
     .big-sub{font-size:22px}
-    .hero{grid-template-columns:1fr;text-align:center}
 }
 </style>
 </head>
@@ -223,26 +225,26 @@ footer{text-align:center;padding:42px;opacity:.45}
 </div>
 </nav>
 
-<!-- BIG SLOGAN -->
+<!-- BIG HERO -->
 <section class="big-hero">
     <h1 class="big-title">Feairl <span class="v2">V2</span></h1>
     <div class="big-sub">Be a Stealth Pro Gamer</div>
     <a class="big-download" href="https://work.ink/26Yy/FeairlExecutor" target="_blank">Download</a>
 </section>
 
-<!-- ORIGINAL HERO -->
-<div class="hero">
-    <div class="hero-text">
-        <h1>Feairl Executor</h1>
-        <p>A modern high-performance Roblox executor focused on execution stability, compatibility, and consistent behavior across updates.</p>
-        <a class="download-btn" href="https://work.ink/26Yy/FeairlExecutor" target="_blank">Download Feairl</a>
-    </div>
+<!-- UI -->
+<div class="ui-section">
     <div class="ui-wrap">
         <div class="ui-glow" id="uiGlow"></div>
         <div class="ui-card" id="uiCard">
             <img src="UI.png">
         </div>
     </div>
+</div>
+
+<!-- STEALTH PANEL -->
+<div class="stealth-panel">
+    <h2>We use stealth injection techniques to ensure undetectable execution.</h2>
 </div>
 
 <!-- COMPATIBILITY -->
@@ -260,11 +262,6 @@ footer{text-align:center;padding:42px;opacity:.45}
 </div>
 </section>
 
-<!-- STEALTH -->
-<div class="stealth-panel">
-    <h2>We use stealth injection techniques to ensure undetectable execution.</h2>
-</div>
-
 <!-- FAQ -->
 <section id="faq">
 <h2>Q & A</h2>
@@ -273,22 +270,18 @@ footer{text-align:center;padding:42px;opacity:.45}
     <div class="faq-q">Why does my antivirus flag Feairl?</div>
     <div class="faq-a">False positives caused by injection behavior.</div>
 </div>
-
 <div class="faq-item">
     <div class="faq-q">Is Feairl safe?</div>
     <div class="faq-a">Feairl contains no malware or spyware.</div>
 </div>
-
 <div class="faq-item">
     <div class="faq-q">Do I need to disable antivirus?</div>
     <div class="faq-a">Whitelisting is recommended.</div>
 </div>
-
 <div class="faq-item">
     <div class="faq-q">Why do some scripts not work?</div>
     <div class="faq-a">Some scripts rely on unsupported features.</div>
 </div>
-
 <div class="faq-item">
     <div class="faq-q">Is there any risk?</div>
     <div class="faq-a">Using executors may violate Roblox ToS.</div>
@@ -299,20 +292,21 @@ footer{text-align:center;padding:42px;opacity:.45}
 <footer>© 2026 Feairl. All rights reserved.</footer>
 
 <script>
-document.querySelectorAll('.faq-item').forEach(i=>{
-    i.onclick=()=>i.classList.toggle('active');
-});
 const card=document.getElementById("uiCard");
 const glow=document.getElementById("uiGlow");
 card.addEventListener("mousemove",e=>{
     const r=card.getBoundingClientRect();
     const x=e.clientX-r.left;
     const y=e.clientY-r.top;
-    card.style.transform=`rotateX(${((y/r.height)-.5)*-14}deg) rotateY(${((x/r.width)-.5)*14}deg)`;
+    card.style.transform=
+        `rotateX(${((y/r.height)-.5)*-14}deg)
+         rotateY(${((x/r.width)-.5)*14}deg)`;
     glow.style.setProperty("--x",`${x}px`);
     glow.style.setProperty("--y",`${y}px`);
 });
-card.addEventListener("mouseleave",()=>card.style.transform="rotateX(0) rotateY(0)");
+card.addEventListener("mouseleave",()=>{
+    card.style.transform="rotateX(0) rotateY(0)";
+});
 </script>
 
 </body>
