@@ -44,24 +44,51 @@ nav{
     font-weight:600;
 }
 .nav-left img{width:34px;height:34px}
-.nav-links{display:flex;gap:32px}
+
+/* 🔧 修正偏上問題 */
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:32px;
+}
 .nav-links a{
+    display:inline-flex;
+    align-items:center;
+    height:40px;
     color:white;
     text-decoration:none;
     opacity:.75;
     transition:.25s;
 }
 .nav-links a:hover{opacity:1}
+
+/* 🔥 Download：靜止就像按鈕 */
 .nav-download{
-    padding:8px 20px;
+    height:40px;
+    display:inline-flex;
+    align-items:center;
+    padding:0 22px;
     border-radius:14px;
-    border:1px solid rgba(255,255,255,.3);
-    background:rgba(255,255,255,.08);
+    border:1px solid rgba(200,150,255,.6);
+    background:linear-gradient(
+        135deg,
+        rgba(200,150,255,.35),
+        rgba(120,80,255,.25)
+    );
+    color:white;
+    font-weight:600;
+    opacity:1;
+    box-shadow:0 0 20px rgba(180,120,255,.45);
+    transition:.25s;
+}
+.nav-download:hover{
+    transform:translateY(-1px);
+    box-shadow:0 0 30px rgba(180,120,255,.75);
 }
 
-/* ===== HERO ===== */
+/* ===== HERO（拉到最高） ===== */
 .hero{
-    padding:100px 24px 40px;
+    padding:28px 24px 24px; /* ← 關鍵 */
     text-align:center;
 }
 .hero-title{
@@ -74,7 +101,7 @@ nav{
     text-shadow:0 0 40px rgba(180,120,255,.95);
 }
 .hero-tagline{
-    margin-top:16px;
+    margin-top:10px;
     font-size:82px;
     font-weight:900;
     background:linear-gradient(90deg,#c08bff,#6aa6ff,#ff8bd8);
@@ -162,19 +189,20 @@ nav{
     transform:translateY(-8px);
     box-shadow:0 0 50px rgba(180,120,255,.4);
 }
-.stealth-label{opacity:.7}
 .stealth-value{
     font-size:44px;
     font-weight:800;
     color:#dcb6ff;
 }
 
-/* ===== SECTIONS ===== */
+/* ===== GENERIC SECTION ===== */
 section{
     max-width:1300px;
     margin:auto;
     padding:120px 24px;
 }
+
+/* ===== COMPAT ===== */
 .compat-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -212,7 +240,7 @@ section{
     line-height:1.7;
 }
 .faq-item.active .faq-a{
-    max-height:800px;
+    max-height:900px;
     padding:22px 32px 0;
 }
 
@@ -227,7 +255,6 @@ section{
     transform:none;
 }
 
-/* ===== FOOTER ===== */
 footer{text-align:center;padding:42px;opacity:.45}
 
 @media(max-width:900px){
@@ -277,19 +304,19 @@ footer{text-align:center;padding:42px;opacity:.45}
     <h2>Stealth Injection System</h2>
     <p>
         Feairl utilizes an advanced stealth-based injection architecture designed to minimize
-        detection vectors and reduce behavioral anomalies during execution.
+        detection vectors and reduce execution fingerprints during runtime.
     </p>
     <div class="stealth-grid">
         <div class="stealth-card">
-            <div class="stealth-label">Detection Rate</div>
+            <div>Detection Rate</div>
             <div class="stealth-value">0.00%</div>
         </div>
         <div class="stealth-card">
-            <div class="stealth-label">Total Bans (2026)</div>
+            <div>Total Bans (2026)</div>
             <div class="stealth-value">0</div>
         </div>
         <div class="stealth-card">
-            <div class="stealth-label">Injection Mode</div>
+            <div>Injection Mode</div>
             <div class="stealth-value">Stealth</div>
         </div>
     </div>
@@ -302,16 +329,16 @@ footer{text-align:center;padding:42px;opacity:.45}
         <h3>UNC Compatibility</h3>
         <div class="compat-stat">99%</div>
         <div class="compat-desc">
-            Feairl supports the vast majority of commonly used UNC executor functions,
-            ensuring stable script execution across popular environments.
+            Supports the majority of commonly used executor functions with stable behavior
+            across most modern Roblox environments.
         </div>
     </div>
     <div class="compat-card">
         <h3>sUNC Compatibility</h3>
         <div class="compat-stat">98%</div>
         <div class="compat-desc">
-            Advanced and complex scripts relying on extended functionality are supported,
-            providing high flexibility for power users.
+            Advanced scripts relying on extended execution features are highly supported
+            with minimal compatibility issues.
         </div>
     </div>
 </div>
@@ -323,40 +350,32 @@ footer{text-align:center;padding:42px;opacity:.45}
 <div class="faq-item">
     <div class="faq-q">Why does my antivirus flag Feairl?</div>
     <div class="faq-a">
-        Some antivirus software may falsely detect Feairl due to its injection-based
-        execution methods. These are false positives and do not indicate malicious intent.
+        Antivirus software may falsely identify Feairl due to its injection-based behavior.
+        These detections are false positives and do not indicate malicious activity.
     </div>
 </div>
 
 <div class="faq-item">
     <div class="faq-q">Is Feairl safe?</div>
     <div class="faq-a">
-        Yes. Feairl does not include malware, spyware, or unauthorized data collection.
-        The software only performs script execution as intended.
+        Feairl does not contain malware, spyware, or unauthorized data collection mechanisms.
+        The executor only performs script execution as designed.
     </div>
 </div>
 
 <div class="faq-item">
     <div class="faq-q">Do I need to disable antivirus?</div>
     <div class="faq-a">
-        Disabling antivirus is not required, but adding Feairl to your antivirus whitelist
-        is recommended to avoid execution interruptions.
-    </div>
-</div>
-
-<div class="faq-item">
-    <div class="faq-q">Why do some scripts not work?</div>
-    <div class="faq-a">
-        Certain scripts may rely on unsupported or deprecated functions.
-        Script compatibility varies depending on how the script was written.
+        Disabling antivirus software is not required. However, adding Feairl to your antivirus
+        whitelist is recommended to prevent execution interruptions.
     </div>
 </div>
 
 <div class="faq-item">
     <div class="faq-q">Is there any risk?</div>
     <div class="faq-a">
-        Using executors may violate Roblox’s Terms of Service.
-        Users assume full responsibility when using third-party execution tools.
+        Using executors may violate Roblox’s Terms of Service. Users assume all responsibility
+        for potential consequences when using third-party tools.
     </div>
 </div>
 
