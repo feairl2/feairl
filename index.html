@@ -46,17 +46,12 @@ nav{
 .nav-left img{
     width:34px;
     height:34px;
-    display:block;
 }
 .nav-links{
     display:flex;
-    align-items:center;
     gap:32px;
 }
 .nav-links a{
-    display:inline-flex;
-    align-items:center;
-    height:36px;
     color:white;
     text-decoration:none;
     opacity:.75;
@@ -70,10 +65,9 @@ nav{
     background:rgba(255,255,255,.08);
 }
 
-/* ===== HERO ===== */
+/* ===== HERO（貼頂） ===== */
 .hero{
-    min-height:90vh;
-    padding:160px 24px 80px;
+    padding:100px 24px 40px;
     text-align:center;
 }
 .hero-title{
@@ -86,7 +80,7 @@ nav{
     text-shadow:0 0 40px rgba(180,120,255,.95);
 }
 .hero-tagline{
-    margin-top:24px;
+    margin-top:16px;
     font-size:82px;
     font-weight:900;
     background:linear-gradient(90deg,#c08bff,#6aa6ff,#ff8bd8);
@@ -94,16 +88,16 @@ nav{
     -webkit-text-fill-color:transparent;
 }
 
-/* ===== UI ===== */
+/* ===== UI（緊貼標語） ===== */
 .ui-section{
-    padding:80px 24px 40px;
+    padding:20px 24px 20px;
     display:flex;
     justify-content:center;
 }
 .ui-wrap{
-    position:relative;
     max-width:960px;
     width:100%;
+    position:relative;
     perspective:1400px;
 }
 .ui-glow{
@@ -130,11 +124,11 @@ nav{
 }
 .ui-card img{width:100%;display:block}
 
-/* ===== DOWNLOAD ===== */
+/* ===== DOWNLOAD（緊貼 UI） ===== */
 .download-wrap{
     display:flex;
     justify-content:center;
-    margin:60px 0 120px;
+    margin:24px 0 120px;
 }
 .download-main{
     padding:22px 72px;
@@ -145,27 +139,19 @@ nav{
     text-decoration:none;
     font-size:18px;
     font-weight:600;
-    transition:transform .2s;
+    transition:.2s;
 }
 .download-main:hover{transform:scale(1.05)}
 
-/* ===== STEALTH ===== */
+/* ===== 其餘區塊原樣 ===== */
 .stealth{
     max-width:1100px;
     margin:0 auto 140px;
     padding:40px 24px;
     text-align:center;
 }
-.stealth h2{
-    font-size:34px;
-    margin-bottom:10px;
-    color:#e7d4ff;
-}
-.stealth p{
-    font-size:16px;
-    opacity:.75;
-    margin-bottom:40px;
-}
+.stealth h2{font-size:34px;color:#e7d4ff}
+.stealth p{opacity:.75;margin-bottom:40px}
 .stealth-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -182,83 +168,15 @@ nav{
     transform:translateY(-8px);
     box-shadow:0 0 50px rgba(180,120,255,.4);
 }
-.stealth-label{
-    font-size:14px;
-    opacity:.7;
-    margin-bottom:12px;
-}
-.stealth-value{
-    font-size:44px;
-    font-weight:800;
-    color:#dcb6ff;
-}
 
-/* ===== COMPATIBILITY ===== */
 section{
     max-width:1300px;
     margin:auto;
     padding:120px 24px;
 }
-.compat-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:36px;
-}
-.compat-card{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:26px;
-    padding:42px;
-}
-.compat-stat{
-    font-size:46px;
-    font-weight:700;
-    color:#dcb6ff;
-}
-.compat-desc{
-    margin-top:14px;
-    font-size:15px;
-    opacity:.75;
-    line-height:1.6;
-}
 
-/* ===== FAQ ===== */
-.faq-item{margin-bottom:28px}
-.faq-q{
-    background:rgba(255,255,255,.06);
-    padding:26px 32px;
-    border-radius:22px;
-    border:1px solid rgba(255,255,255,.18);
-    font-weight:600;
-    cursor:pointer;
-}
-.faq-a{
-    max-height:0;
-    overflow:hidden;
-    transition:.45s ease;
-    padding:0 32px;
-    opacity:.9;
-}
-.faq-item.active .faq-a{
-    max-height:800px;
-    padding:22px 32px 0;
-}
-
-/* ===== REVEAL ===== */
-.reveal{
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
-.reveal.show{
-    opacity:1;
-    transform:none;
-}
-
-/* ===== FOOTER ===== */
 footer{text-align:center;padding:42px;opacity:.45}
 
-/* ===== RWD ===== */
 @media(max-width:900px){
     .hero-title{font-size:56px}
     .hero-tagline{font-size:44px}
@@ -282,11 +200,13 @@ footer{text-align:center;padding:42px;opacity:.45}
 </div>
 </nav>
 
+<!-- 標題 + 標語 -->
 <section class="hero reveal">
     <h1 class="hero-title">Feairl <span class="v2">V2</span></h1>
     <div class="hero-tagline">Be a Stealth Pro Gamer</div>
 </section>
 
+<!-- UI.png -->
 <div class="ui-section reveal">
     <div class="ui-wrap">
         <div class="ui-glow" id="uiGlow"></div>
@@ -296,87 +216,19 @@ footer{text-align:center;padding:42px;opacity:.45}
     </div>
 </div>
 
+<!-- Download -->
 <div class="download-wrap reveal">
     <a class="download-main" href="https://work.ink/26Yy/FeairlExecutor" target="_blank">
         Download Feairl
     </a>
 </div>
 
-<div class="stealth reveal">
-    <h2>Stealth Injection System</h2>
-    <p>Advanced stealth injection designed to minimize detection vectors.</p>
-    <div class="stealth-grid">
-        <div class="stealth-card">
-            <div class="stealth-label">Detection Rate</div>
-            <div class="stealth-value">0.00%</div>
-        </div>
-        <div class="stealth-card">
-            <div class="stealth-label">Total Bans (2026)</div>
-            <div class="stealth-value">0</div>
-        </div>
-        <div class="stealth-card">
-            <div class="stealth-label">Injection Mode</div>
-            <div class="stealth-value">Stealth</div>
-        </div>
-    </div>
-</div>
-
-<section id="compatibility" class="reveal">
-<h2>Execution Compatibility</h2>
-<div class="compat-grid">
-    <div class="compat-card">
-        <h3>UNC Compatibility</h3>
-        <div class="compat-stat">99%</div>
-        <div class="compat-desc">
-            Supports the majority of commonly used executor functions with stable behavior.
-        </div>
-    </div>
-    <div class="compat-card">
-        <h3>sUNC Compatibility</h3>
-        <div class="compat-stat">98%</div>
-        <div class="compat-desc">
-            Represents extremely high script support, including advanced and complex execution behaviors.
-        </div>
-    </div>
-</div>
-</section>
-
-<section id="faq" class="reveal">
-<h2>Q & A</h2>
-
-<div class="faq-item">
-    <div class="faq-q">Why does my antivirus flag Feairl?</div>
-    <div class="faq-a">False positives caused by injection behavior.</div>
-</div>
-
-<div class="faq-item">
-    <div class="faq-q">Is Feairl safe?</div>
-    <div class="faq-a">Feairl contains no malware or spyware.</div>
-</div>
-
-<div class="faq-item">
-    <div class="faq-q">Do I need to disable antivirus?</div>
-    <div class="faq-a">Whitelisting is recommended.</div>
-</div>
-
-<div class="faq-item">
-    <div class="faq-q">Why do some scripts not work?</div>
-    <div class="faq-a">Some scripts rely on unsupported features.</div>
-</div>
-
-<div class="faq-item">
-    <div class="faq-q">Is there any risk?</div>
-    <div class="faq-a">Using executors may violate Roblox ToS.</div>
-</div>
-
-</section>
-
 <footer>© 2026 Feairl. All rights reserved.</footer>
 
 <script>
-/* UI tilt + glow */
 const card=document.getElementById("uiCard");
 const glow=document.getElementById("uiGlow");
+
 card.addEventListener("mousemove",e=>{
     const r=card.getBoundingClientRect();
     const x=e.clientX-r.left;
@@ -391,7 +243,6 @@ card.addEventListener("mouseleave",()=>{
     card.style.transform="rotateX(0) rotateY(0)";
 });
 
-/* Scroll reveal */
 const reveals=document.querySelectorAll(".reveal");
 function revealCheck(){
     reveals.forEach(r=>{
@@ -402,14 +253,6 @@ function revealCheck(){
 }
 window.addEventListener("scroll",revealCheck);
 revealCheck();
-
-/* FAQ FIX */
-document.querySelectorAll('.faq-item').forEach(item=>{
-    const q=item.querySelector('.faq-q');
-    q.addEventListener('click',()=>{
-        item.classList.toggle('active');
-    });
-});
 </script>
 
 </body>
