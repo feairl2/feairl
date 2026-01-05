@@ -5,9 +5,6 @@
 <title>Feairl Executor</title>
 
 <link rel="icon" href="./Feairllogo.png" type="image/png">
-<link rel="shortcut icon" href="./Feairllogo.png" type="image/png">
-<link rel="apple-touch-icon" href="./Feairllogo.png">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -36,30 +33,32 @@ nav{
     justify-content:space-between;
     align-items:center;
 }
-.nav-left{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:20px;
-    font-weight:600;
-}
-.nav-left img{width:34px;height:34px}
-
 .nav-links{
     display:flex;
-    align-items:center;
     gap:32px;
 }
 .nav-links a{
+    position:relative;
+    height:40px;
     display:inline-flex;
     align-items:center;
-    height:40px;
     color:white;
     text-decoration:none;
+    opacity:.75;
+    transition:.25s;
+    cursor:pointer;
+}
+.nav-links a:hover{opacity:1}
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:6px;
+    height:2px;
+    background:#c08bff;
+    opacity:0;
     transition:.25s;
 }
-.nav-links a:not(.nav-download){opacity:.75}
-.nav-links a:not(.nav-download):hover{opacity:1}
+.nav-links a:hover::after{opacity:1}
 
 .nav-download{
     padding:0 22px;
@@ -67,22 +66,18 @@ nav{
     border:1px solid rgba(200,150,255,.6);
     background:linear-gradient(135deg,rgba(200,150,255,.35),rgba(120,80,255,.25));
     font-weight:600;
-    box-shadow:0 0 20px rgba(180,120,255,.45);
+    opacity:1 !important;
 }
 
 /* ===== HERO ===== */
 .hero{
-    padding:24px 24px 20px;
+    padding:24px 24px 16px;
     text-align:center;
 }
 .hero-title{
     font-size:96px;
     font-weight:900;
     margin:0;
-}
-.hero-title .v2{
-    color:#c08bff;
-    text-shadow:0 0 40px rgba(180,120,255,.95);
 }
 .hero-tagline{
     margin-top:6px;
@@ -92,52 +87,32 @@ nav{
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
-
-/* 游標 */
 .cursor{
     margin-left:6px;
     color:#fff;
     -webkit-text-fill-color:#fff;
     animation:blink 1s infinite;
 }
-@keyframes blink{
-    0%,50%,100%{opacity:1}
-    25%,75%{opacity:0}
-}
+@keyframes blink{50%{opacity:0}}
 
 /* ===== UI ===== */
 .ui-section{
-    padding:20px 24px;
+    padding:20px;
     display:flex;
     justify-content:center;
 }
 .ui-wrap{
     max-width:960px;
-    width:100%;
-    position:relative;
     perspective:1400px;
-}
-.ui-glow{
-    position:absolute;
-    inset:-120px;
-    border-radius:80px;
-    background:radial-gradient(
-        circle at var(--x,50%) var(--y,50%),
-        rgba(190,120,255,.45),
-        transparent 60%
-    );
-    filter:blur(80px);
-    pointer-events:none;
 }
 .ui-card{
     border-radius:36px;
     overflow:hidden;
-    transform-style:preserve-3d;
-    box-shadow:
-        0 0 0 1px rgba(200,150,255,.45),
-        0 0 100px rgba(180,120,255,.75),
-        0 100px 260px rgba(0,0,0,.95);
-    transition:transform .15s;
+    transition:transform .15s, box-shadow .25s;
+    box-shadow:0 0 80px rgba(180,120,255,.5);
+}
+.ui-card:hover{
+    box-shadow:0 0 140px rgba(180,120,255,.85);
 }
 .ui-card img{width:100%;display:block}
 
@@ -151,22 +126,20 @@ nav{
     position:relative;
     padding:22px 72px;
     border-radius:26px;
-    border:1px solid rgba(255,255,255,.35);
     background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.35);
     color:white;
     font-size:18px;
     font-weight:600;
     text-decoration:none;
     overflow:hidden;
-    opacity:1 !important;
+    cursor:pointer;
 }
 .download-main .label{
     position:relative;
     z-index:2;
-    transition:.35s;
+    transition:.3s;
 }
-
-/* ✅ Work.ink：真正置中 */
 .download-main .hover-text{
     position:absolute;
     inset:0;
@@ -177,112 +150,66 @@ nav{
     font-size:14px;
     letter-spacing:2px;
     opacity:0;
-    transition:.35s;
+    transition:.3s;
     z-index:2;
 }
-
-/* 模糊層 */
 .download-main::before{
     content:"";
     position:absolute;
     inset:0;
-    background:rgba(255,255,255,.35);
-    backdrop-filter:blur(0px);
+    background:
+        radial-gradient(
+            180px circle at var(--mx,50%) var(--my,50%),
+            rgba(200,150,255,.45),
+            transparent 60%
+        );
     opacity:0;
-    transition:.35s;
+    transition:.25s;
 }
-.download-main:hover::before{
-    opacity:1;
-    backdrop-filter:blur(12px);
-}
+.download-main:hover::before{opacity:1}
 .download-main:hover .label{opacity:.35}
 .download-main:hover .hover-text{opacity:1}
 
-/* ===== SCROLL REVEAL ===== */
-.reveal{
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s ease;
-}
-.reveal.show{
-    opacity:1;
-    transform:none;
-}
-
-/* ===== STEALTH ===== */
-.stealth{
-    max-width:1100px;
-    margin:0 auto 140px;
-    padding:40px 24px;
-    text-align:center;
-}
-.stealth h2{font-size:34px;color:#e7d4ff}
-.stealth p{opacity:.75;margin-bottom:40px}
-.stealth-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:28px;
-}
-.stealth-card{
+/* ===== CARDS ===== */
+.stealth-card,.compat-card{
     background:rgba(255,255,255,.06);
     border:1px solid rgba(200,150,255,.25);
     border-radius:22px;
-    padding:34px 28px;
+    padding:34px;
+    transition:.25s;
+    cursor:pointer;
 }
-.stealth-value{
-    font-size:44px;
-    font-weight:800;
-    color:#dcb6ff;
+.stealth-card:hover,.compat-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 40px rgba(180,120,255,.35);
 }
-
-/* ===== SECTION ===== */
-section{
-    max-width:1300px;
-    margin:auto;
-    padding:120px 24px;
-}
-
-/* ===== COMPAT ===== */
-.compat-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:36px;
-}
-.compat-card{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.18);
-    border-radius:26px;
-    padding:42px;
-}
-.compat-stat{
-    font-size:46px;
-    font-weight:700;
-    color:#dcb6ff;
-}
-.compat-desc{opacity:.75;line-height:1.6}
 
 /* ===== FAQ ===== */
-.faq-item{margin-bottom:28px}
 .faq-q{
     background:rgba(255,255,255,.06);
     padding:26px 32px;
     border-radius:22px;
-    border:1px solid rgba(255,255,255,.18);
-    font-weight:600;
     cursor:pointer;
+    transition:.25s;
 }
+.faq-q:hover{background:rgba(255,255,255,.1)}
 .faq-a{
     max-height:0;
     overflow:hidden;
-    transition:.45s ease;
-    padding:0 32px;
-    opacity:.9;
-    line-height:1.7;
+    transition:.4s;
 }
 .faq-item.active .faq-a{
-    max-height:900px;
-    padding:22px 32px 0;
+    max-height:800px;
+    margin-top:12px;
 }
+
+/* ===== REVEAL ===== */
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+.reveal.show{opacity:1;transform:none}
 
 footer{text-align:center;padding:42px;opacity:.45}
 </style>
@@ -292,20 +219,18 @@ footer{text-align:center;padding:42px;opacity:.45}
 
 <nav>
 <div class="nav-inner">
-    <div class="nav-left">
-        <img src="Feairl.png"> Feairl
-    </div>
+    <div>Feairl</div>
     <div class="nav-links">
-        <a href="#">Home</a>
-        <a href="#compatibility">Compatibility</a>
-        <a href="#faq">Q & A</a>
+        <a>Home</a>
+        <a>Compatibility</a>
+        <a>Q & A</a>
         <a class="nav-download" href="https://work.ink/26Yy/FeairlExecutor" target="_blank">Download</a>
     </div>
 </div>
 </nav>
 
 <section class="hero reveal">
-    <h1 class="hero-title">Feairl <span class="v2">V2</span></h1>
+    <h1 class="hero-title">Feairl V2</h1>
     <div class="hero-tagline">
         Be A Stealth <span id="dynamicText"></span><span class="cursor">|</span>
     </div>
@@ -313,7 +238,6 @@ footer{text-align:center;padding:42px;opacity:.45}
 
 <div class="ui-section reveal">
     <div class="ui-wrap">
-        <div class="ui-glow" id="uiGlow"></div>
         <div class="ui-card" id="uiCard">
             <img src="UI.png">
         </div>
@@ -321,120 +245,58 @@ footer{text-align:center;padding:42px;opacity:.45}
 </div>
 
 <div class="download-wrap reveal">
-    <a class="download-main" href="https://work.ink/26Yy/FeairlExecutor" target="_blank">
+    <a class="download-main" id="cta" href="https://work.ink/26Yy/FeairlExecutor" target="_blank">
         <span class="label">Download Feairl</span>
         <span class="hover-text">Work.ink</span>
     </a>
 </div>
 
-<div class="stealth reveal">
-    <h2>Stealth Injection System</h2>
-    <p>Advanced stealth-based injection architecture designed to minimize detection vectors.</p>
-    <div class="stealth-grid">
-        <div class="stealth-card"><div>Detection Rate</div><div class="stealth-value">0.00%</div></div>
-        <div class="stealth-card"><div>Total Bans (2026)</div><div class="stealth-value">0</div></div>
-        <div class="stealth-card"><div>Injection Mode</div><div class="stealth-value">Stealth</div></div>
-    </div>
-</div>
-
-<section id="compatibility" class="reveal">
-<h2>Execution Compatibility</h2>
-<div class="compat-grid">
-    <div class="compat-card">
-        <h3>UNC Compatibility</h3>
-        <div class="compat-stat">99%</div>
-        <div class="compat-desc">
-            Supports the majority of commonly used executor functions with stable behavior.
-        </div>
-    </div>
-    <div class="compat-card">
-        <h3>sUNC Compatibility</h3>
-        <div class="compat-stat">98%</div>
-        <div class="compat-desc">
-            Represents extremely high script support including advanced execution behaviors.
-        </div>
-    </div>
-</div>
-</section>
-
-<section id="faq" class="reveal">
-<h2>Q & A</h2>
-
-<div class="faq-item">
-    <div class="faq-q">Why does my antivirus flag Feairl?</div>
-    <div class="faq-a">False positives caused by injection behavior.</div>
-</div>
-<div class="faq-item">
-    <div class="faq-q">Is Feairl safe?</div>
-    <div class="faq-a">Feairl contains no malware or spyware.</div>
-</div>
-<div class="faq-item">
-    <div class="faq-q">Do I need to disable antivirus?</div>
-    <div class="faq-a">Whitelisting is recommended.</div>
-</div>
-<div class="faq-item">
-    <div class="faq-q">Why do some scripts not work?</div>
-    <div class="faq-a">
-        Some scripts rely on unsupported or deprecated executor functions.
-    </div>
-</div>
-<div class="faq-item">
-    <div class="faq-q">Is there any risk?</div>
-    <div class="faq-a">
-        Using executors may violate Roblox Terms of Service.
-    </div>
-</div>
-
-</section>
-
-<footer>© 2026 Feairl. All rights reserved.</footer>
+<footer>© 2026 Feairl</footer>
 
 <script>
 /* UI Tilt */
 const card=document.getElementById("uiCard");
-const glow=document.getElementById("uiGlow");
 card.addEventListener("mousemove",e=>{
     const r=card.getBoundingClientRect();
     const x=e.clientX-r.left;
     const y=e.clientY-r.top;
-    card.style.transform=
-        `rotateX(${((y/r.height)-.5)*-14}deg)
-         rotateY(${((x/r.width)-.5)*14}deg)`;
-    glow.style.setProperty("--x",`${x}px`);
-    glow.style.setProperty("--y",`${y}px`);
+    card.style.transform=`rotateX(${((y/r.height)-.5)*-12}deg) rotateY(${((x/r.width)-.5)*12}deg)`;
 });
-card.addEventListener("mouseleave",()=>{
-    card.style.transform="rotateX(0) rotateY(0)";
+card.addEventListener("mouseleave",()=>card.style.transform="");
+
+/* CTA hover feedback */
+const cta=document.getElementById("cta");
+cta.addEventListener("mousemove",e=>{
+    const r=cta.getBoundingClientRect();
+    cta.style.setProperty("--mx",`${e.clientX-r.left}px`);
+    cta.style.setProperty("--my",`${e.clientY-r.top}px`);
 });
 
-/* Scroll Reveal */
+/* Scroll reveal */
 const reveals=document.querySelectorAll(".reveal");
-function revealCheck(){
+function check(){
     reveals.forEach(r=>{
-        if(r.getBoundingClientRect().top<window.innerHeight-80){
-            r.classList.add("show");
-        }
+        if(r.getBoundingClientRect().top<innerHeight-80)r.classList.add("show");
     });
 }
-window.addEventListener("scroll",revealCheck);
-revealCheck();
+addEventListener("scroll",check);check();
 
 /* FAQ */
-document.querySelectorAll('.faq-item').forEach(item=>{
-    item.querySelector('.faq-q').onclick=()=>item.classList.toggle('active');
+document.querySelectorAll(".faq-q").forEach(q=>{
+    q.onclick=()=>q.parentElement.classList.toggle("active");
 });
 
-/* Dynamic Tagline */
+/* Tagline typing */
 const words=["Pro Gamer","Cheater","Hack"];
-const textEl=document.getElementById("dynamicText");
 let w=0,c=0,del=false;
+const t=document.getElementById("dynamicText");
 (function loop(){
     const word=words[w];
     if(!del){
-        textEl.textContent=word.slice(0,++c);
-        if(c===word.length) setTimeout(()=>del=true,1200);
+        t.textContent=word.slice(0,++c);
+        if(c===word.length)setTimeout(()=>del=true,1200);
     }else{
-        textEl.textContent=word.slice(0,--c);
+        t.textContent=word.slice(0,--c);
         if(c===0){del=false;w=(w+1)%words.length}
     }
     setTimeout(loop,del?60:90);
