@@ -5,6 +5,7 @@
 <title>Feairl Executor</title>
 
 <link rel="icon" href="./Feairllogo.png" type="image/png">
+<link rel="apple-touch-icon" href="./Feairllogo.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -33,15 +34,22 @@ nav{
     justify-content:space-between;
     align-items:center;
 }
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:20px;
+    font-weight:600;
+}
 .nav-links{
     display:flex;
     gap:32px;
 }
 .nav-links a{
     position:relative;
-    height:40px;
     display:inline-flex;
     align-items:center;
+    height:40px;
     color:white;
     text-decoration:none;
     opacity:.75;
@@ -78,6 +86,10 @@ nav{
     font-size:96px;
     font-weight:900;
     margin:0;
+}
+.hero-title .v2{
+    color:#c08bff;
+    text-shadow:0 0 40px rgba(180,120,255,.9);
 }
 .hero-tagline{
     margin-top:6px;
@@ -170,8 +182,21 @@ nav{
 .download-main:hover .label{opacity:.35}
 .download-main:hover .hover-text{opacity:1}
 
-/* ===== CARDS ===== */
-.stealth-card,.compat-card{
+/* ===== STEALTH ===== */
+.stealth{
+    max-width:1100px;
+    margin:0 auto 140px;
+    padding:40px 24px;
+    text-align:center;
+}
+.stealth h2{font-size:34px;color:#e7d4ff}
+.stealth p{opacity:.75;margin-bottom:40px}
+.stealth-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:28px;
+}
+.stealth-card{
     background:rgba(255,255,255,.06);
     border:1px solid rgba(200,150,255,.25);
     border-radius:22px;
@@ -179,12 +204,48 @@ nav{
     transition:.25s;
     cursor:pointer;
 }
-.stealth-card:hover,.compat-card:hover{
+.stealth-card:hover{
     transform:translateY(-6px);
     box-shadow:0 12px 40px rgba(180,120,255,.35);
 }
+.stealth-value{
+    font-size:44px;
+    font-weight:800;
+    color:#dcb6ff;
+}
+
+/* ===== COMPAT ===== */
+section{
+    max-width:1300px;
+    margin:auto;
+    padding:120px 24px;
+}
+.compat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:36px;
+}
+.compat-card{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:26px;
+    padding:42px;
+    transition:.25s;
+    cursor:pointer;
+}
+.compat-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 40px rgba(180,120,255,.35);
+}
+.compat-stat{
+    font-size:46px;
+    font-weight:700;
+    color:#dcb6ff;
+}
+.compat-desc{opacity:.75;line-height:1.6}
 
 /* ===== FAQ ===== */
+.faq-item{margin-bottom:28px}
 .faq-q{
     background:rgba(255,255,255,.06);
     padding:26px 32px;
@@ -196,11 +257,14 @@ nav{
 .faq-a{
     max-height:0;
     overflow:hidden;
-    transition:.4s;
+    transition:.45s ease;
+    padding:0 32px;
+    opacity:.9;
+    line-height:1.7;
 }
 .faq-item.active .faq-a{
-    max-height:800px;
-    margin-top:12px;
+    max-height:900px;
+    padding:22px 32px 0;
 }
 
 /* ===== REVEAL ===== */
@@ -219,18 +283,18 @@ footer{text-align:center;padding:42px;opacity:.45}
 
 <nav>
 <div class="nav-inner">
-    <div>Feairl</div>
+    <div class="nav-left">Feairl</div>
     <div class="nav-links">
-        <a>Home</a>
-        <a>Compatibility</a>
-        <a>Q & A</a>
+        <a href="#">Home</a>
+        <a href="#compatibility">Compatibility</a>
+        <a href="#faq">Q & A</a>
         <a class="nav-download" href="https://work.ink/26Yy/FeairlExecutor" target="_blank">Download</a>
     </div>
 </div>
 </nav>
 
 <section class="hero reveal">
-    <h1 class="hero-title">Feairl V2</h1>
+    <h1 class="hero-title">Feairl <span class="v2">V2</span></h1>
     <div class="hero-tagline">
         Be A Stealth <span id="dynamicText"></span><span class="cursor">|</span>
     </div>
@@ -251,16 +315,70 @@ footer{text-align:center;padding:42px;opacity:.45}
     </a>
 </div>
 
-<footer>© 2026 Feairl</footer>
+<div class="stealth reveal">
+    <h2>Stealth Injection System</h2>
+    <p>Advanced stealth-based injection architecture designed to minimize detection vectors.</p>
+    <div class="stealth-grid">
+        <div class="stealth-card"><div>Detection Rate</div><div class="stealth-value">0.00%</div></div>
+        <div class="stealth-card"><div>Total Bans (2026)</div><div class="stealth-value">0</div></div>
+        <div class="stealth-card"><div>Injection Mode</div><div class="stealth-value">Stealth</div></div>
+    </div>
+</div>
+
+<section id="compatibility" class="reveal">
+<h2>Execution Compatibility</h2>
+<div class="compat-grid">
+    <div class="compat-card">
+        <h3>UNC Compatibility</h3>
+        <div class="compat-stat">99%</div>
+        <div class="compat-desc">Supports the majority of commonly used executor functions.</div>
+    </div>
+    <div class="compat-card">
+        <h3>sUNC Compatibility</h3>
+        <div class="compat-stat">98%</div>
+        <div class="compat-desc">Supports advanced and complex execution behaviors.</div>
+    </div>
+</div>
+</section>
+
+<section id="faq" class="reveal">
+<h2>Q & A</h2>
+
+<div class="faq-item">
+    <div class="faq-q">Why does my antivirus flag Feairl?</div>
+    <div class="faq-a">False positives caused by injection behavior.</div>
+</div>
+<div class="faq-item">
+    <div class="faq-q">Is Feairl safe?</div>
+    <div class="faq-a">Feairl contains no malware or spyware.</div>
+</div>
+<div class="faq-item">
+    <div class="faq-q">Do I need to disable antivirus?</div>
+    <div class="faq-a">Whitelisting is recommended.</div>
+</div>
+<div class="faq-item">
+    <div class="faq-q">Why do some scripts not work?</div>
+    <div class="faq-a">Some scripts rely on unsupported or deprecated functions.</div>
+</div>
+<div class="faq-item">
+    <div class="faq-q">Is there any risk?</div>
+    <div class="faq-a">Using executors may violate Roblox Terms of Service.</div>
+</div>
+
+</section>
+
+<footer>© 2026 Feairl. All rights reserved.</footer>
 
 <script>
-/* UI Tilt */
+/* UI tilt */
 const card=document.getElementById("uiCard");
 card.addEventListener("mousemove",e=>{
     const r=card.getBoundingClientRect();
     const x=e.clientX-r.left;
     const y=e.clientY-r.top;
-    card.style.transform=`rotateX(${((y/r.height)-.5)*-12}deg) rotateY(${((x/r.width)-.5)*12}deg)`;
+    card.style.transform=
+        `rotateX(${((y/r.height)-.5)*-12}deg)
+         rotateY(${((x/r.width)-.5)*12}deg)`;
 });
 card.addEventListener("mouseleave",()=>card.style.transform="");
 
@@ -274,12 +392,15 @@ cta.addEventListener("mousemove",e=>{
 
 /* Scroll reveal */
 const reveals=document.querySelectorAll(".reveal");
-function check(){
+function revealCheck(){
     reveals.forEach(r=>{
-        if(r.getBoundingClientRect().top<innerHeight-80)r.classList.add("show");
+        if(r.getBoundingClientRect().top<window.innerHeight-80){
+            r.classList.add("show");
+        }
     });
 }
-addEventListener("scroll",check);check();
+window.addEventListener("scroll",revealCheck);
+revealCheck();
 
 /* FAQ */
 document.querySelectorAll(".faq-q").forEach(q=>{
