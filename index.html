@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Feairl | High-Performance Script Executor</title>
+    <title>Feairl | The Elite Script Executor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #121214; /* 深灰色背景，非純黑 */
-            --bg-sub: #1a1a1e;
+            --bg: #0f0f11; 
+            --bg-sub: #16161a;
             --fg: #f5f5f7;
             --muted: #a1a1a6;
-            --accent: #ffffff;
             --border: rgba(255, 255, 255, 0.08);
-            --card-hover: rgba(255, 255, 255, 0.03);
+            --accent: #ffffff;
         }
 
         * { box-sizing: border-box; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
@@ -23,6 +22,7 @@
             background: var(--bg);
             color: var(--fg);
             font-family: 'Inter', -apple-system, sans-serif;
+            overflow-x: hidden;
         }
 
         /* ===== NAVIGATION ===== */
@@ -30,8 +30,8 @@
             position: fixed;
             top: 0; width: 100%;
             z-index: 1000;
-            background: rgba(18, 18, 20, 0.7);
-            backdrop-filter: blur(15px);
+            background: rgba(15, 15, 17, 0.75);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
 
@@ -50,7 +50,9 @@
             letter-spacing: -0.8px;
             text-decoration: none;
             color: var(--fg);
+            transition: 0.3s;
         }
+        .logo:hover { opacity: 0.8; }
 
         .nav-links { display: flex; gap: 32px; align-items: center; }
         .nav-links a {
@@ -72,9 +74,9 @@
 
         /* ===== HERO ===== */
         .hero {
-            padding: 180px 24px 100px;
+            padding: 200px 24px 100px;
             text-align: center;
-            background: radial-gradient(circle at top, #1e1e22 0%, #121214 100%);
+            background: radial-gradient(circle at 50% -20%, #22222a 0%, #0f0f11 60%);
         }
 
         .hero h1 {
@@ -83,14 +85,16 @@
             letter-spacing: -0.06em;
             margin: 0;
             line-height: 0.85;
+            background: linear-gradient(180deg, #fff 40%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
             color: var(--muted);
             font-size: clamp(18px, 3.5vw, 24px);
-            margin: 28px auto 48px;
+            margin: 32px auto 48px;
             max-width: 720px;
-            font-weight: 400;
         }
 
         .btn-hero {
@@ -102,112 +106,152 @@
             text-decoration: none;
             font-weight: 700;
             font-size: 17px;
-            transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .btn-hero:hover { transform: scale(1.02); }
+        .btn-hero:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(255,255,255,0.1); }
 
-        /* ===== UI PREVIEW ===== */
+        /* ===== PREVIEW ===== */
         .preview-container {
-            max-width: 1050px;
-            margin: -40px auto 100px;
+            max-width: 1100px;
+            margin: -40px auto 120px;
             padding: 0 24px;
         }
 
         .ui-window {
             background: var(--bg-sub);
             border: 1px solid var(--border);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+            transition: transform 0.5s ease;
+        }
+        .ui-window:hover { transform: scale(1.01); }
+        .ui-window img { width: 100%; display: block; opacity: 0.9; }
+
+        /* ===== STATS (Three Boards) ===== */
+        .stats-section {
+            max-width: 1200px;
+            margin: 0 auto 120px;
+            padding: 0 24px;
         }
 
-        .ui-window img { width: 100%; display: block; filter: brightness(1.1); }
-
-        /* ===== STATS SECTION ===== */
         .stats-grid {
-            max-width: 1200px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            border-top: 1px solid var(--border);
+            gap: 24px;
         }
 
         .stat-card {
-            padding: 80px 50px;
-            border-right: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 60px 40px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
-        .stat-card:last-child { border-right: none; }
+
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            opacity: 0; transition: 0.4s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .stat-card:hover::before { opacity: 1; }
 
         .stat-label {
             color: var(--muted);
             font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
         }
 
         .stat-value {
-            font-size: 64px;
+            font-size: 72px;
             font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             display: block;
+            letter-spacing: -3px;
         }
 
         .stat-desc { color: var(--muted); font-size: 16px; line-height: 1.6; }
 
-        /* ===== Q&A SECTION ===== */
+        /* ===== Q&A ===== */
         .qa-section {
             max-width: 850px;
-            margin: 120px auto;
+            margin: 150px auto;
             padding: 0 24px;
         }
 
         .qa-header { text-align: center; margin-bottom: 60px; }
-        .qa-header h2 { font-size: 42px; font-weight: 800; letter-spacing: -1px; }
+        .qa-header h2 { font-size: 48px; font-weight: 800; letter-spacing: -2px; }
 
         .qa-item {
-            background: var(--bg-sub);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            margin-bottom: 16px;
+            background: transparent;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 8px;
             transition: 0.3s;
         }
-        .qa-item:hover { border-color: rgba(255,255,255,0.2); }
 
         .qa-q {
-            padding: 24px 32px;
+            padding: 32px 0;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: 600;
-            font-size: 17px;
+            font-size: 18px;
+            transition: 0.3s;
         }
+        .qa-q:hover { color: var(--muted); }
+
         .qa-a {
             max-height: 0;
             overflow: hidden;
             color: var(--muted);
             line-height: 1.8;
-            padding: 0 32px;
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .qa-item.active .qa-a { max-height: 300px; padding-bottom: 32px; }
+
+        .qa-item.active .qa-a {
+            max-height: 500px;
+            padding-bottom: 32px;
+        }
+
+        .icon { 
+            width: 20px; height: 20px; 
+            position: relative; 
+            transition: 0.4s;
+        }
+        .icon::before, .icon::after {
+            content: ""; position: absolute; background: currentColor;
+            top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%);
+        }
+        .icon::after { transform: translateY(-50%) rotate(90deg); }
+        
         .qa-item.active .icon { transform: rotate(45deg); }
-        .icon { transition: 0.3s; color: var(--muted); font-size: 24px; }
+        .qa-item.active .qa-q { color: var(--fg); }
 
         /* ===== FOOTER ===== */
         footer {
             padding: 100px 24px;
             text-align: center;
             border-top: 1px solid var(--border);
-            background: #0d0d0f;
+            opacity: 0.6;
         }
-        footer p { color: var(--muted); font-size: 14px; }
 
-        /* Scroll Reveal */
-        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.show { opacity: 1; transform: translateY(0); }
 
     </style>
@@ -227,31 +271,33 @@
 
 <section class="hero reveal">
     <h1>FEAIRL V2</h1>
-    <p>A refined script executor environment built for stability, security, and unmatched compatibility.</p>
-    <a href="https://work.ink/26Yy/FeairlExecutor" class="btn-hero">Initialize Setup</a>
+    <p>The next-generation script executor. Stability, safety, and performance refined into a single interface.</p>
+    <a href="https://work.ink/26Yy/FeairlExecutor" class="btn-hero">Get Feairl Now</a>
 </section>
 
 <div class="preview-container reveal">
     <div class="ui-window">
-        <img src="UI.png" alt="Executor Dashboard">
+        <img src="UI.png" alt="Feairl Executor Interface">
     </div>
 </div>
 
-<section id="features" class="stats-grid reveal">
-    <div class="stat-card">
-        <div class="stat-label">Safety Index</div>
-        <span class="stat-value">0%</span>
-        <p class="stat-desc">Maintained a zero-detection record throughout 2026 using stealth injection architecture.</p>
-    </div>
-    <div class="stat-card">
-        <div class="stat-label">UNC Standard</div>
-        <span class="stat-value">99%</span>
-        <p class="stat-desc">Full compliance with the Unified Naming Convention, ensuring standard script reliability.</p>
-    </div>
-    <div class="stat-card">
-        <div class="stat-label">sUNC Compatibility</div>
-        <span class="stat-value">98%</span>
-        <p class="stat-desc">Engineered to support sophisticated script logic and complex executor environments.</p>
+<section id="features" class="stats-section reveal">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-label">Safety Status</span>
+            <span class="stat-value">0%</span>
+            <p class="stat-desc">Zero detection incidents throughout 2026. Feairl uses high-tier stealth injection to stay under the radar.</p>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">UNC Standard</span>
+            <span class="stat-value">99%</span>
+            <p class="stat-desc">Broad script support. This executor handles the majority of standard environment functions with ease.</p>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">sUNC Logic</span>
+            <span class="stat-value">98%</span>
+            <p class="stat-desc">Engineered for sophisticated script logic. Run high-end internal tools without compatibility errors.</p>
+        </div>
     </div>
 </section>
 
@@ -261,59 +307,60 @@
     </div>
     
     <div class="qa-item">
-        <div class="qa-q">Why is Feairl flagged by antivirus software? <span class="icon">+</span></div>
-        <div class="faq-a">This is a false positive. Because executors utilize memory injection to run scripts, security software often misidentifies the behavior. Whitelisting the folder is highly recommended.</div>
+        <div class="qa-q">Why is this executor flagged by antivirus? <div class="icon"></div></div>
+        <div class="qa-a">As a powerful script executor, Feairl interacts directly with game memory. This behavior is often flagged as a false positive by security software. Whitelisting the application is a standard procedure.</div>
     </div>
 
     <div class="qa-item">
-        <div class="qa-q">Is this executor safe for my account? <span class="icon">+</span></div>
-        <div class="qa-a">Feairl is built with an emphasis on stealth. While no third-party tool is 100% risk-free, our polymorphic engine is designed to bypass the latest detection vectors.</div>
+        <div class="qa-q">How does sUNC improve script performance? <div class="icon"></div></div>
+        <div class="qa-a">Sophisticated UNC (sUNC) ensures that this executor can handle complex custom functions found in top-tier scripts, providing a smoother experience than basic alternatives.</div>
     </div>
 
     <div class="qa-item">
-        <div class="qa-q">What makes sUNC compatibility important? <span class="icon">+</span></div>
-        <div class="qa-a">sUNC (Sophisticated UNC) allows the executor to handle modern, high-tier scripts that rely on complex environment functions that standard executors often fail to process.</div>
+        <div class="qa-q">Is my account safe using this executor? <div class="icon"></div></div>
+        <div class="qa-a">Feairl is built for stealth. Our injection core is updated 24/7 to bypass new detection methods, making it one of the safest executors on the market in 2026.</div>
     </div>
 
     <div class="qa-item">
-        <div class="qa-q">Does Feairl support multi-instance executor? <span class="icon">+</span></div>
-        <div class="qa-a">Yes. Feairl is optimized for multi-account usage with minimal resource overhead, allowing you to run several instances simultaneously without performance drops.</div>
+        <div class="qa-q">Does it support multi-account usage? <div class="icon"></div></div>
+        <div class="qa-a">Yes. Feairl V2 is optimized for multi-instance tasks. You can run several accounts simultaneously with minimal CPU and RAM impact.</div>
     </div>
 
     <div class="qa-item">
-        <div class="qa-q">How often is the executor updated? <span class="icon">+</span></div>
-        <div class="qa-a">Updates are pushed automatically whenever a platform patch is detected. Our goal is to minimize downtime and keep the executor environment stable at all times.</div>
+        <div class="qa-q">How often are updates released? <div class="icon"></div></div>
+        <div class="qa-a">Whenever a platform update occurs, our team pushes an executor patch immediately. We prioritize uptime to ensure your scripts are always ready.</div>
     </div>
 
     <div class="qa-item">
-        <div class="qa-q">Do I need to pay for Feairl V2? <span class="icon">+</span></div>
-        <div class="qa-a">Currently, Feairl V2 provides a powerful free-to-use tier. You can access the download via our verified link system.</div>
+        <div class="qa-q">What should I do if the executor crashes? <div class="icon"></div></div>
+        <div class="qa-a">Ensure all redistributables are updated and your antivirus hasn't quarantined a core file. Re-downloading and whitelisting the folder usually fixes most issues.</div>
     </div>
 </section>
 
 <footer>
-    <p>&copy; 2026 Feairl Project. All rights reserved.</p>
-    <p style="margin-top: 12px; opacity: 0.4; font-size: 12px;">Dedicated to high-performance script executor technology.</p>
+    <p>&copy; 2026 Feairl Project. Leading the future of script executor technology.</p>
 </footer>
 
 <script>
-    // Q&A Toggle
+    // Q&A Toggle Logic
     document.querySelectorAll('.qa-q').forEach(q => {
         q.onclick = () => {
-            const parent = q.parentElement;
-            const wasActive = parent.classList.contains('active');
+            const item = q.parentElement;
+            const isActive = item.classList.contains('active');
             
-            // Close others (Optional: comment out if you want multiple open)
-            document.querySelectorAll('.qa-item').forEach(item => item.classList.remove('active'));
+            // Optional: Close other open items
+            document.querySelectorAll('.qa-item').forEach(el => el.classList.remove('active'));
             
-            if (!wasActive) parent.classList.add('active');
+            if (!isActive) item.classList.add('active');
         };
     });
 
-    // Intersection Observer for Reveal
+    // Intersection Observer for Reveal Animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('show');
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
         });
     }, { threshold: 0.1 });
 
