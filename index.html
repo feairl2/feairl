@@ -32,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== 導航欄 ===== */
+        /* ===== NAVIGATION (指示燈現在在這裡) ===== */
         nav {
             position: fixed;
             top: 0; width: 100%;
@@ -51,9 +51,41 @@
             align-items: center;
         }
 
-        .nav-left { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .nav-left { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            text-decoration: none; 
+        }
+
         .nav-left img { width: 28px; height: 28px; object-fit: contain; }
         .logo-text { font-weight: 800; font-size: 22px; letter-spacing: -0.8px; color: var(--fg); }
+
+        /* 左上角標題旁的指示燈 */
+        .status-dot-nav {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 4px; /* 緊貼在文字後面 */
+            transition: 0.5s;
+        }
+
+        .dot-green {
+            background-color: var(--green);
+            box-shadow: 0 0 15px var(--green);
+            animation: breathe 2s infinite ease-in-out;
+        }
+
+        .dot-red {
+            background-color: var(--red);
+            box-shadow: 0 0 15px var(--red);
+            animation: breathe 2s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { opacity: 1; transform: scale(1); filter: brightness(1.2); }
+            50% { opacity: 0.6; transform: scale(0.85); filter: brightness(0.8); }
+        }
 
         .nav-links { display: flex; gap: 32px; align-items: center; }
         .nav-links a {
@@ -73,18 +105,11 @@
             font-weight: 700;
         }
 
-        /* ===== HERO & 呼吸燈 ===== */
+        /* ===== HERO ===== */
         .hero {
-            padding: 200px 24px 100px;
+            padding: 220px 24px 100px;
             text-align: center;
             background: radial-gradient(circle at 50% -20%, #22222a 0%, #0f0f11 60%);
-        }
-
-        .title-wrapper {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
         }
 
         .hero h1 {
@@ -92,36 +117,10 @@
             font-weight: 800;
             letter-spacing: -0.06em;
             margin: 0;
-            line-height: 1;
+            line-height: 0.85;
             background: linear-gradient(180deg, #fff 40%, #888 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        /* 呼吸燈樣式 */
-        .title-dot {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            transition: background-color 0.5s ease;
-            margin-top: 10px;
-        }
-
-        .dot-green {
-            background-color: var(--green);
-            box-shadow: 0 0 25px var(--green);
-            animation: breathe 2s infinite ease-in-out;
-        }
-
-        .dot-red {
-            background-color: var(--red);
-            box-shadow: 0 0 25px var(--red);
-            animation: breathe 2s infinite ease-in-out;
-        }
-
-        @keyframes breathe {
-            0%, 100% { opacity: 1; transform: scale(1); filter: brightness(1.2); }
-            50% { opacity: 0.7; transform: scale(0.9); filter: brightness(0.8); }
         }
 
         .hero p {
@@ -141,26 +140,26 @@
         .btn-discord { background: rgba(255,255,255,0.05); color: var(--fg); border: 1px solid var(--border); }
         .btn-discord:hover { background: var(--discord); color: white; border-color: var(--discord); }
 
-        /* ===== 內容預覽與數據卡片 ===== */
+        /* ===== PREVIEW & STATS ===== */
         .preview-container { max-width: 1100px; margin: -40px auto 120px; padding: 0 24px; }
-        .ui-window { background: var(--bg-sub); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6); transition: transform 0.5s ease; }
+        .ui-window { background: var(--bg-sub); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6); transition: 0.5s; }
         .ui-window:hover { transform: scale(1.01); }
         .ui-window img { width: 100%; display: block; opacity: 0.95; }
 
         .stats-section { max-width: 1200px; margin: 0 auto 120px; padding: 0 24px; }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .stat-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 20px; padding: 60px 40px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .stat-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2); }
+        .stat-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 20px; padding: 60px 40px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .stat-card:hover { transform: translateY(-10px); background: rgba(255, 255, 255, 0.05); }
         .stat-label { color: var(--muted); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block; }
         .stat-value { font-size: 72px; font-weight: 800; margin-bottom: 16px; display: block; letter-spacing: -3px; }
         .stat-desc { color: var(--muted); font-size: 16px; line-height: 1.6; }
 
-        /* ===== Q&A 區塊 ===== */
+        /* ===== Q&A ===== */
         .qa-section { max-width: 850px; margin: 150px auto; padding: 0 24px; }
         .qa-header { text-align: center; margin-bottom: 60px; }
         .qa-header h2 { font-size: 48px; font-weight: 800; letter-spacing: -2px; }
         .qa-item { border-bottom: 1px solid var(--border); margin-bottom: 8px; }
-        .qa-q { padding: 32px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 18px; transition: color 0.3s; }
+        .qa-q { padding: 32px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 18px; transition: 0.3s; }
         .qa-a { max-height: 0; overflow: hidden; color: var(--muted); line-height: 1.8; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
         .qa-item.active .qa-a { max-height: 500px; padding-bottom: 32px; }
         .icon { width: 20px; height: 20px; position: relative; transition: 0.4s; color: var(--muted); }
@@ -171,7 +170,7 @@
 
         footer { padding: 100px 24px; text-align: center; border-top: 1px solid var(--border); opacity: 0.6; }
 
-        /* 進場動畫設定 */
+        /* REVEAL ANIMATIONS */
         .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.show { opacity: 1; transform: translateY(0); }
     </style>
@@ -183,6 +182,7 @@
         <a href="#" class="nav-left">
             <img src="Feairl.png" alt="Feairl Logo">
             <span class="logo-text">FEAIRL</span>
+            <div id="statusDot" class="status-dot-nav"></div>
         </a>
         <div class="nav-links">
             <a href="#features">Specifications</a>
@@ -194,10 +194,7 @@
 </nav>
 
 <section class="hero reveal">
-    <div class="title-wrapper">
-        <h1>FEAIRL V3</h1>
-        <div id="statusDot" class="title-dot"></div>
-    </div>
+    <h1>FEAIRL V3</h1>
     <p>Powerful Keyless High-performance And Secure Executor.</p>
     <div class="hero-btns"> 
         <a href="https://work.ink/26Yy/FeairlExecutor" class="btn-hero">Get Feairl Now</a>
@@ -258,21 +255,21 @@
 <footer><p>&copy; 2026 Feairl Project. Professional Executor Technology.</p></footer>
 
 <script>
-    // 讀取 state.txt
+    // 讀取狀態
     async function updateStatus() {
         const dot = document.getElementById('statusDot');
         try {
             const resp = await fetch('state.txt?t=' + Date.now());
             const status = (await resp.text()).trim().toLowerCase();
-            dot.className = (status === 'true') ? 'title-dot dot-green' : 'title-dot dot-offline';
+            dot.className = (status === 'true') ? 'status-dot-nav dot-green' : 'status-dot-nav dot-red';
         } catch (e) {
-            dot.className = 'title-dot dot-red';
+            dot.className = 'status-dot-nav dot-red';
         }
     }
     updateStatus();
     setInterval(updateStatus, 30000);
 
-    // Q&A 點擊動畫
+    // Q&A 邏輯
     document.querySelectorAll('.qa-q').forEach(q => {
         q.onclick = () => {
             const item = q.parentElement;
@@ -282,7 +279,7 @@
         };
     });
 
-    // 進場動畫偵測
+    // 揭幕動畫
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
     }, { threshold: 0.1 });
