@@ -32,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== NAVIGATION (指示燈現在在這裡) ===== */
+        /* ===== NAVIGATION ===== */
         nav {
             position: fixed;
             top: 0; width: 100%;
@@ -61,12 +61,11 @@
         .nav-left img { width: 28px; height: 28px; object-fit: contain; }
         .logo-text { font-weight: 800; font-size: 22px; letter-spacing: -0.8px; color: var(--fg); }
 
-        /* 左上角標題旁的指示燈 */
         .status-dot-nav {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            margin-left: 4px; /* 緊貼在文字後面 */
+            margin-left: 4px;
             transition: 0.5s;
         }
 
@@ -107,7 +106,7 @@
 
         /* ===== HERO ===== */
         .hero {
-            padding: 220px 24px 100px;
+            padding: 220px 24px 80px;
             text-align: center;
             background: radial-gradient(circle at 50% -20%, #22222a 0%, #0f0f11 60%);
         }
@@ -140,12 +139,50 @@
         .btn-discord { background: rgba(255,255,255,0.05); color: var(--fg); border: 1px solid var(--border); }
         .btn-discord:hover { background: var(--discord); color: white; border-color: var(--discord); }
 
-        /* ===== PREVIEW & STATS ===== */
-        .preview-container { max-width: 1100px; margin: -40px auto 120px; padding: 0 24px; }
-        .ui-window { background: var(--bg-sub); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6); transition: 0.5s; }
-        .ui-window:hover { transform: scale(1.01); }
-        .ui-window img { width: 100%; display: block; opacity: 0.95; }
+        /* ===== INFINITE MARQUEE (核心修改處) ===== */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 40px 0 120px;
+            position: relative;
+        }
 
+        .marquee-content {
+            display: flex;
+            width: max-content; /* 確保內容長度由圖片決定 */
+            animation: scroll 30s linear infinite; /* 控制滾動速度 */
+        }
+
+        /* 當滑鼠懸停時暫停動畫 */
+        .marquee-content:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-item {
+            flex-shrink: 0;
+            width: 600px; /* 您可以根據圖片比例調整寬度 */
+            margin: 0 15px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            background: var(--bg-sub);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .marquee-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0.9;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); } /* 捲動到一半處，實現無縫連接 */
+        }
+
+        /* ===== STATS ===== */
         .stats-section { max-width: 1200px; margin: 0 auto 120px; padding: 0 24px; }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
         .stat-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 20px; padding: 60px 40px; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -170,7 +207,6 @@
 
         footer { padding: 100px 24px; text-align: center; border-top: 1px solid var(--border); opacity: 0.6; }
 
-        /* REVEAL ANIMATIONS */
         .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.show { opacity: 1; transform: translateY(0); }
     </style>
@@ -202,9 +238,14 @@
     </div>
 </section>
 
-<div class="preview-container reveal">
-    <div class="ui-window">
-        <img src="UI.png" alt="Feairl UI">
+<div class="marquee-container reveal">
+    <div class="marquee-content">
+        <div class="marquee-item"><img src="UI.png" alt="Feairl UI 1"></div>
+        <div class="marquee-item"><img src="UI2.png" alt="Feairl UI 2"></div>
+        <div class="marquee-item"><img src="UI3.png" alt="Feairl UI 3"></div>
+        <div class="marquee-item"><img src="UI.png" alt="Feairl UI 1"></div>
+        <div class="marquee-item"><img src="UI2.png" alt="Feairl UI 2"></div>
+        <div class="marquee-item"><img src="UI3.png" alt="Feairl UI 3"></div>
     </div>
 </div>
 
